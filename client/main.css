@@ -1,0 +1,73 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+#formLogin{
+  border-color: black;
+  size: 50px;
+  
+}
+
+.error{
+	display: none;
+	margin-left: 10px;
+}		
+
+.error_show{
+	color: red;
+	margin-left: 10px;
+}
+
+.badge{
+  border: 10px;
+  font: 200;
+  
+}
+
+input.estudo-obras{
+  align-self: center;
+}
+
+.fa-plus{
+  size: 4px;
+}
+
+.btn.add-atividade{
+  margin-right: 50px;
+
+}
+.atividade-interna-item-ano{
+  width: 100px;
+}
+
+.atividade-interna-item-atividade{
+  width: 500px;
+}
+.frequencia{
+  width: 100px;
+}
+
+.table-head{
+  
+  text-align: center;
+}
+input.checkbox-experienca-pratica{
+  position: relative;
+  left: 30px;
+}
+input.checkbox-tipo-socio{
+  position: relative;
+  left: 30px;
+}
+h3{
+  text-align: center;
+}
+.atividade-interna-add{
+  text-align: right;
+}
+.td-acoes{
+  text-align: center;
+}
+.atividade-item{
+  text-align: center !important;
+}
