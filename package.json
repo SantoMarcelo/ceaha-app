@@ -21,6 +21,6 @@
     "testModule": "tests/main.js"
   },
   "engines": {
-    "node": "6.11.1"
+    "node": "8.1.x"
   }
 }
