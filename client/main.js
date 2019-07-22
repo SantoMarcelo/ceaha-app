@@ -354,6 +354,18 @@ Template.listaParticipante.events({
     }
 
 })
+Template.editarParticipante.onRendered(function () {
+    $(document).ready(function(){
+        $('#date-birth').inputmask("99-99-9999");
+        $('.cep').inputmask('99999-999');
+        $('#telefoneRes').inputmask('(99) 9999-9999');
+        $('#telefoneCel').inputmask('(99) 99999-9999');
+        $('.cpf').inputmask('999.999.999-99', {reverse: true});
+        $('#telComercial').inputmask('(99) 99999-9999');
+      });
+        
+    
+})
 
 Template.editarParticipante.onCreated(function () {
     
@@ -472,28 +484,56 @@ Template.editarParticipante.events({
 
     'click #editar'(event, instance) {
         event.preventDefault();
-        var participante = getFormData()
-
-        if (this._id) {
-            Meteor.call('updateParticipante', this._id, participante, function (err, res) {
-                if (err) {
-                    sAlert.error(err.reason)
-                    return false;
-                } else {
-                    sAlert.success('Participante alterado com sucesso.')
-                }
-            })
-        } else {
-            Meteor.call('inserirParticipante', participante, function (err, res) {
-                if (err) {
-                    sAlert.error(err.reason)
-                    return false;
-                } else {
-                    sAlert.success('Participante cadastrado com sucesso.')
-                }
-            })
+        var name = $('#full-name').val()
+        var dt_nasc = $('#date-birth').val()
+        var cpf = $('#cpf').val()
+        var rg = $('#rg').val()
+        var validator = true
+ 
+        if(name == ""){
+            sAlert.error("Campo Nome é obrigatório")
+            validator = false
         }
-        window.location.href = ('/home');
+        if(dt_nasc == ""){
+            sAlert.error("Campo Data de Nascimento é obrigatório")
+            validator = false
+        }
+        if(rg == ""){
+         sAlert.error("Campo RG é obrigatório")
+         validator = false
+        }
+        if(cpf == ""){
+            sAlert.error("Campo CPF é obrigatório")
+            validator = false
+        }
+ 
+        var participante = getFormData()
+        if(validator){
+            if (this._id) {
+                Meteor.call('updateParticipante', this._id, participante, function (err, res) {
+                    if (err) {
+                        sAlert.error(err.reason)
+                        return false;
+                    } else {
+                        sAlert.success('Participante alterado com sucesso.')
+                    }
+                })
+                
+            } else {
+                Meteor.call('inserirParticipante', participante, function (err, res) {
+                    if (err) {
+                        sAlert.error(err.reason)
+                        return false;
+                    } else {
+                        sAlert.success('Participante cadastrado com sucesso.')
+                    }
+                })
+            }
+            //window.location.href = ('/home');
+        }else{
+            sAlert.error('Por favor preencha todos os dados obrigatórios')
+        }
+        
         // Meteor.call('inserirParticipante', participante, function(err, res){
         //   if (err) {
         //       sAlert.error(err.reason)

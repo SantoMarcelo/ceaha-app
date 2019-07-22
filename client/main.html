@@ -771,14 +771,13 @@
           <form class="form-control">
             <div class="form-row">
               <div class="form-group col-md-6 ">
-                <label for="full-name">Nome Completo</label>
+                <label for="full-name">Nome Completo *</label>
                 <input type="text" class="form-control" id="full-name" placeholder="nome completo" autocomplete="on"
                   value="{{nome}}" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="date-birth">Data de Nascimento</label>
-                <input type="text" class="form-control date" id="date-birth" placeholder="dd/mm/aaaa" value="{{nascimento}}"
-                  data-inputmask="'mask': '9999 9999 9999 9999'">
+                <label for="date-birth">Data de Nascimento *</label>
+                <input type="text" class="form-control date" id="date-birth" placeholder="dd/mm/aaaa" value="{{nascimento}}" data-inputmask="'mask': '99/99/9999'">
               </div>
             </div>
             <div class="form-row">
@@ -836,7 +835,7 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-2">
-                <label for="rg">RG</label>
+                <label for="rg">RG *</label>
                 <input type="text" class="form-control" id="rg" placeholder="RG" value="{{rg}}">
               </div>
               <div class="form-group col-md-2">
@@ -844,8 +843,8 @@
                 <input type="text" class="form-control" id="orgao-emissor" placeholder="Orgão Emissor" value="{{orgao_emissor}}">
               </div>
               <div class="col-md-4 form-group ">
-                <label for="cpf">CPF</label>
-                <input type="text" class="form-control" id="cpf" placeholder="999.999.999-99" value="{{cpf}}">
+                <label for="cpf">CPF *</label>
+                <input type="text" class="form-control cpf" id="cpf" placeholder="999.999.999-99" value="{{cpf}}" data-inputmask="'mask': '999.999.999-99'">
               </div>
               <div class="col-md-4 form-group ">
                 <label for="inputEstadoCivil">Estado Civil</label>
