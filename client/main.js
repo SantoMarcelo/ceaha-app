@@ -22,16 +22,12 @@ Meteor.startup(function () {
 
 })
 
-
-
-
 Router.route('/', function () {
     this.render('novoParticipante');
 });
 Router.route('/novoParticipante', function () {
     this.render('novoParticipante');
 });
-
 Router.route('/login', function () {
     this.render('acesso');
 });
@@ -254,25 +250,44 @@ Template.novoParticipante.events({
 
     'click #cadastrar'(event, instance) {
         event.preventDefault();
-       
-        $('#full-name').on('input', function() {
-            var input=$(this);
-            var is_name=input.val();
-            if(is_name){input.removeClass("invalid").addClass("valid");}
-            else{input.removeClass("valid").addClass("invalid");}
-        });
+       var name = $('#full-name').val()
+       var dt_nasc = $('#date-birth').val()
+       var cpf = $('#cpf').val()
+       var rg = $('#rg').val()
+       var validator = true
+
+       if(name == ""){
+           sAlert.error("Campo Nome é obrigatório")
+           validator = false
+       }
+       if(dt_nasc == ""){
+           sAlert.error("Campo Data de Nascimento é obrigatório")
+           validator = false
+       }
+       if(rg == ""){
+        sAlert.error("Campo RG é obrigatório")
+        validator = false
+       }
+       if(cpf == ""){
+           sAlert.error("Campo CPF é obrigatório")
+           validator = false
+       }
 
         var participante = getFormData();
-
-        Meteor.call('inserirParticipante', participante, function (err, res) {
-            if (err) {
-                sAlert.error(err.reason)
-                return false;
-            } else {
-                sAlert.success('Participante cadastrado com sucesso.')
-                window.location.href = ('/')
-            }
-        })
+        if(validator){
+            Meteor.call('inserirParticipante', participante, function (err, res) {
+                if (err) {
+                    sAlert.error(err.reason)
+                    return false;
+                } else {
+                    sAlert.success('Participante cadastrado com sucesso.')
+                    window.location.href = ('/')
+                }
+            })       
+        }else{
+            sAlert.error('Por favor preencha todos os dados obrigatórios')
+        }
+        
     }
 })
 
@@ -528,6 +543,7 @@ Template.preenchimentoInterno.onCreated(function () {
     this.atividade = new ReactiveVar(Atividades.find());
     this.participante = new ReactiveVar(Participantes.find());
     this.socio = new ReactiveVar(Socio.find());
+    this.deptoAtividade = new ReactiveVar()
 })
  
 Template.preenchimentoInterno.helpers({
@@ -541,6 +557,9 @@ Template.preenchimentoInterno.helpers({
     },
     'listaSocio': function(){
         return Template.instance().socio.get();
+    },
+    'listaDeptoAtividades': function(){
+        return Template.instance().deptoAtividade.get();
     }
 })
 
@@ -549,7 +568,7 @@ Template.preenchimentoInterno.events({
         event.preventDefault();
         var atividades_internas = {
             ano: $('#atividadeInternaAno').val(),
-            atividade: $('#atividadeInterna').val(),
+            atividade: $('#selectAtividadeInterna option:selected').val(),
             freq_total: $('#atividadeInternaFreqTotal').val(),
             freq_real: $('#atividadeInternaFreqReal').val(),
             departamento: $('#atividadeInternaDepartamento option:selected').text(),
@@ -617,6 +636,66 @@ Template.preenchimentoInterno.events({
                 })
             }
             
+    },
+    'change #atividadeInternaDepartamento'(event){
+        var depto = $('#atividadeInternaDepartamento').val()
+        var depto_atividades
+        switch(depto){
+            case 'DIJE':
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Grupo do Gena'} ,
+                        {nome:'Grupo de pais'} ,
+                        {nome:'Coordenador de Evangelho'} ,
+                        {nome:'Colaborador passista'} ,
+                        {nome:'Evangelizador'} ,
+                        {nome:'Estudante'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)
+                break
+            case 'DECDE':
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Secretaria'} ,
+                        {nome:'Facilitador de grupos de estudos'} ,
+                        {nome:'Estudante'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)
+                break
+            case 'DDOU':
+                    console.log('Diretor, Diretor-Adjunto,  Leitor, Mesário, Palestrante, Palestrante Substituto')
+                    break
+            case 'DAFT':
+                    console.log('Diretor, Diretor-Adjunto, Atendente  fraterno, Grupo  Enxugando lágrimas, Grupo Artesanato, Recepção da casa em diferentes horários.')
+                    break
+            case 'DMED':
+                    console.log('Diretor, Diretor-Adjunto,  Primeiro-Dirigente de sessão mediúnica - Segundo-Dirigente  de sessão mediúnica, Dialogador, Médium psicofônico,  Médium psicógrafo, Médium vidente, Médium audiente, Médium pictógrafo,  Atividade de sustentação.')
+                    break
+            case 'DPAS':
+                    console.log('Diretor, Diretor-adjunto, Secretaria, Coordenador,  Colaborador passista ')
+                    break
+            case 'DAPS':
+                    console.log('Diretor, Diretor-Adjunto, Recepção masculina, Recepção feminina, Controle e distribuição de fichas feminino e masculino, Organização de doações: roupas e alimentos, Montagem de cestas básicas, Preparação de lanches, Atendimento de individual feminino - separação e entrega de  roupas etc., Atendimento individual masculino- separação e entrega de roupas, etc., Leitura na tribuna.')
+                    break
+            case 'DFAM':
+                    console.log(' Diretor, Diretor-Adjunto, Semanas da Família, Campanha de Implantação do Culto do Evangelho no Lar, Grupo de pais, Programa de Rádio (Guarujá)')
+                    break
+            case 'DEVT':
+                    console.log('Diretor, Diretor-Adjunto,')
+                    break
+            case 'DLIV':
+                    console.log('Diretor, Diretor-Adjunto, Responsável pela Biblioteca, Auxiliar da Biblioteca,  Responsável pela Restauração, Restaurador de Livros, Auxiliar da Livraria.')
+                    break
+            case 'DART':
+                    console.log('Diretor, Diretor-Adjunto, Oficina de cênicas, Oficina de locução, Leitura dramática.')
+                    break
+            case 'DCOM':
+                    console.log('Diretor, Diretor-Adjunto, Editor de texto, Diagramador, Fotógrafo, Cinegrafista, Operador de áudio, Editor de vídeo, Iluminador, Locutor.')
+                    break
+        }
+        
     }
 })
 
