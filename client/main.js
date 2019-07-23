@@ -705,34 +705,123 @@ Template.preenchimentoInterno.events({
                 Template.instance().deptoAtividade.set(depto_atividades)
                 break
             case 'DDOU':
-                    console.log('Diretor, Diretor-Adjunto,  Leitor, Mesário, Palestrante, Palestrante Substituto')
-                    break
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Leitor'} ,
+                        {nome:'Mesário'} ,
+                        {nome:'Palestrante'} ,
+                        {nome:'Palestrante Substituto'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)
+                break        
             case 'DAFT':
-                    console.log('Diretor, Diretor-Adjunto, Atendente  fraterno, Grupo  Enxugando lágrimas, Grupo Artesanato, Recepção da casa em diferentes horários.')
-                    break
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Atendente  fraterno'} ,
+                        {nome:'Grupo  Enxugando lágrimas'} ,
+                        {nome:'Recepção da casa em diferentes horários'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)
+                break
             case 'DMED':
-                    console.log('Diretor, Diretor-Adjunto,  Primeiro-Dirigente de sessão mediúnica - Segundo-Dirigente  de sessão mediúnica, Dialogador, Médium psicofônico,  Médium psicógrafo, Médium vidente, Médium audiente, Médium pictógrafo,  Atividade de sustentação.')
-                    break
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Primeiro-Dirigente de sessão mediúnica'} ,
+                        {nome:'Segundo-Dirigente  de sessão mediúnica'} ,
+                        {nome:'Dialogador'} ,
+                        {nome:'Médium psicofônico'} ,
+                        {nome:'Médium psicógrafo'} ,
+                        {nome:'Médium vidente'} ,
+                        {nome:'Médium audiente'} ,
+                        {nome:'Médium pictógrafo'} ,
+                        {nome:'Atividade de sustentação'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)        
+                break
             case 'DPAS':
-                    console.log('Diretor, Diretor-adjunto, Secretaria, Coordenador,  Colaborador passista ')
-                    break
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Secretaria'} ,
+                        {nome:'Coordenador'} ,
+                        {nome:'Colaborador passista'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)   
+                break
             case 'DAPS':
-                    console.log('Diretor, Diretor-Adjunto, Recepção masculina, Recepção feminina, Controle e distribuição de fichas feminino e masculino, Organização de doações: roupas e alimentos, Montagem de cestas básicas, Preparação de lanches, Atendimento de individual feminino - separação e entrega de  roupas etc., Atendimento individual masculino- separação e entrega de roupas, etc., Leitura na tribuna.')
-                    break
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Recepção masculina'} ,
+                        {nome:'Recepção feminina'} ,
+                        {nome:'Controle e distribuição de fichas feminino e masculino'} ,
+                        {nome:'Organização de doações: roupas e alimentos'} ,
+                        {nome:'Montagem de cestas básicas'} ,
+                        {nome:'Preparação de lanches'} ,
+                        {nome:'Atendimento de individual feminino - separação e entrega de roupas etc'} ,
+                        {nome:'Atendimento individual masculino- separação e entrega de roupas, etc'} ,
+                        {nome:'Leitura na tribuna'} 
+                    ]
+                Template.instance().deptoAtividade.set(depto_atividades)  
+                break
             case 'DFAM':
-                    console.log(' Diretor, Diretor-Adjunto, Semanas da Família, Campanha de Implantação do Culto do Evangelho no Lar, Grupo de pais, Programa de Rádio (Guarujá)')
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Semanas da Família'} ,
+                        {nome:'Campanha de Implantação do Culto do Evangelho no Lar'} ,
+                        {nome:'Grupo de pais'} ,
+                        {nome:'Programa de Rádio (Guarujá)'} 
+                    ]
+                    Template.instance().deptoAtividade.set(depto_atividades)  
                     break
             case 'DEVT':
-                    console.log('Diretor, Diretor-Adjunto,')
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                       
+                    ]
+                    Template.instance().deptoAtividade.set(depto_atividades)  
                     break
             case 'DLIV':
-                    console.log('Diretor, Diretor-Adjunto, Responsável pela Biblioteca, Auxiliar da Biblioteca,  Responsável pela Restauração, Restaurador de Livros, Auxiliar da Livraria.')
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Responsável pela Biblioteca'} ,
+                        {nome:'Responsável pela Restauração'} ,
+                        {nome:'Restaurador de Livros'} ,
+                        {nome:'Auxiliar da Livraria'} ,
+                       
+                    ]
+                    Template.instance().deptoAtividade.set(depto_atividades)  
                     break
             case 'DART':
-                    console.log('Diretor, Diretor-Adjunto, Oficina de cênicas, Oficina de locução, Leitura dramática.')
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Oficina de cênicas'} ,
+                        {nome:'Oficina de locução'} ,
+                        {nome:'Leitura dramática'} 
+                    ]
+                    Template.instance().deptoAtividade.set(depto_atividades)  
                     break
             case 'DCOM':
-                    console.log('Diretor, Diretor-Adjunto, Editor de texto, Diagramador, Fotógrafo, Cinegrafista, Operador de áudio, Editor de vídeo, Iluminador, Locutor.')
+                    depto_atividades = [
+                        {nome:'Diretor'} ,
+                        {nome:'Diretor-Adjunto'} ,
+                        {nome:'Editor de texto'} ,
+                        {nome:'Diagramador'} ,
+                        {nome:'Fotógrafo'} ,
+                        {nome:'Cinegrafista'} ,
+                        {nome:'Operador de áudio'} ,
+                        {nome:'Editor de vídeo'} ,
+                        {nome:'Iluminador'} ,
+                        {nome:'Locutor'} 
+                    ]
+                    Template.instance().deptoAtividade.set(depto_atividades)  
                     break
         }
         
