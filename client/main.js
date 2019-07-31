@@ -458,7 +458,7 @@ Template.editarParticipante.events({
     
 
     'click .checkbox-experienca-pratica'(event, instance) {
-        event.preventDefault();
+        //event.preventDefault();
         $(".experiencia-pratica").each(function (i) {
             //console.log($(this).find('input.checkbox-experienca-pratica:checked'));
             if ($(this).find('input.checkbox-experienca-pratica:checked').length > 0) {
