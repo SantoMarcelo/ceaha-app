@@ -288,6 +288,38 @@ Template.novoParticipante.events({
             sAlert.error('Por favor preencha todos os dados obrigatórios')
         }
         
+    },
+
+    'change #photo-id': function(event) {
+        event.preventDefault()
+        const file = event.currentTarget.files[0]
+        var reader = new FileReader()
+        console.log(file)
+        
+        reader.readAsDataURL(file)
+        console.log('result', reader)
+        console.log('result', reader.readyState)
+        console.log('result2', reader.result)
+
+        if(file){
+            console.log('binary', reader.binary)
+            reader.onload = function(){
+                let photo = {binary: reader.result, name: file.name }
+
+                Meteor.call('photoUpload', photo, (err, res)=>{
+                    if(err){
+                        sAlert.error(err.reason)
+                    }else{
+                        return true
+                    }
+                })
+
+            }
+        }
+        reader.onloadend = function(){
+            sAlert.success('Foto carregada com sucesso')
+        }
+        
     }
 })
 

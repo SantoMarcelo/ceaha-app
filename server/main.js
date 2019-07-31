@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { onPageLoad } from "meteor/server-render";
 import { Mongo } from 'meteor/mongo';
+import { relative } from 'path';
 
 
 Meteor.startup(() => {
@@ -8,7 +9,8 @@ Meteor.startup(() => {
   const Participantes = new Mongo.Collection('participantes');
   const Atividades = new Mongo.Collection('atividades');
   const Socio = new Mongo.Collection('socio')
-  
+  var fs = Npm.require('fs')
+  var path = Npm.require('path')
 
   Meteor.methods({
     'inserirParticipante'(participante) {
@@ -45,6 +47,12 @@ Meteor.startup(() => {
     },
     'adicionaSocio'(socio){
       Socio.insert(socio)
+    },
+    'photoUpload'(file){
+      var basepath = path.resolve('.').split('.meteor')[0]
+      var relativePath = '/uploads/avatars/' + file.name
+      targetPath = basepath + relativePath
+      fs.writeFileSync(targetPath, file.binary, 'binary')
     }
   });
 });
