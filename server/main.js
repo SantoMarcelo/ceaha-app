@@ -50,7 +50,7 @@ Meteor.startup(() => {
     },
     'photoUpload'(file){
       var basepath = path.resolve('.').split('.meteor')[0]
-      var relativePath = '/uploads/avatars/' + file.name
+      var relativePath = `\\uploads\\avatars\\` + file.name
       targetPath = basepath + relativePath
       fs.writeFileSync(targetPath, file.binary, 'binary')
     }

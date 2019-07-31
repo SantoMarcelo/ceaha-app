@@ -292,18 +292,17 @@ Template.novoParticipante.events({
 
     'change #photo-id': function(event) {
         event.preventDefault()
-        const file = event.currentTarget.files[0]
+        var file = event.currentTarget.files[0]
         var reader = new FileReader()
         console.log(file)
         
-        reader.readAsDataURL(file)
-        console.log('result', reader)
-        console.log('result', reader.readyState)
-        console.log('result2', reader.result)
+        
+        
 
         if(file){
-            console.log('binary', reader.binary)
+            
             reader.onload = function(){
+                
                 let photo = {binary: reader.result, name: file.name }
 
                 Meteor.call('photoUpload', photo, (err, res)=>{
@@ -319,7 +318,7 @@ Template.novoParticipante.events({
         reader.onloadend = function(){
             sAlert.success('Foto carregada com sucesso')
         }
-        
+        reader.readAsBinaryString(file)
     }
 })
 
