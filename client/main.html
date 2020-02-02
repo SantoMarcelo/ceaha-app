@@ -1,28 +1,31 @@
+
+
 <head>
   <title>ceaha_app</title>
 </head>
+
 <body>
   {{> sAlert}}
   {{> navbar}}
   <p></p>
 </body>
-   
+
 <template name="navbar">
   <div class="container">
     <nav class="navbar bg-dark navbar-dark">
 
       {{#if currentUser}}
       <div>
-        <a class="navbar-brand" href="#">Bem vindo ao admin do banco de colaboradores CEAHA</a>
+        <a class="navbar-brand" href="#">Cadastro de produtos - Floressencial</a>
 
         <span class="navbar-text mr-2">Olá, {{fullName}}</span>
         <button id="home" class="btn btn-sm btn-outline-warning">Home</button>
-        <button id="novoParticipante" class="btn btn-sm btn-outline-info">Novo Participante</button>
+        <button id="novProduto" class="btn btn-sm btn-outline-info">Novo Participante</button>
         <button id="botaoSair" class="btn btn-sm btn-outline-info">Sair</button>
       </div>
       {{else}}
       <div>
-        <a class="navbar-brand" href="#">Bem vindo ao admin do banco de colaboradores CEAHA</a>
+        <a class="navbar-brand" href="#">Faca o login</a>
         <button id="botaoLogin" class="btn btn-sm btn-outline-info">Logar</button>
 
       </div>
@@ -75,600 +78,74 @@
   </div>
 </template>
 
-<template name="novoParticipante">
+<template name="novoProduto">
   <div class="container">
-    <div style="color: rgb(252, 0, 0);">
-        <span  >Por favor, preencha o formulário com o máximo de informações possíveis.</span> 
-    </div>
-    <div >
-        <span>* campos de preenchimento obrigatórios</span> 
-    </div>
-         
-    <fieldset name="dados-pessoais">
-      <legend><i class="fa fa-address-card"></i> Dados Pessoais</legend>
+    <fieldset name="dados-produto">
+      <legend><i class="fa fa-address-card"></i> Dados Produto</legend>
       <section>
-        <div class="container dados-pessoais">
+        <div class="container dados-produto">
           <form class="form-control validations-require">
             <div class="form-row">
               <div class="form-group col-md-6 ">
-                <label for="full-name">Nome Completo</label>
-                * <input type="text" class="form-control" id="full-name" placeholder="nome completo" autocomplete="on" required>
+                <label for="full-name">Nome</label>
+                * <input type="text" class="form-control" id="full-name" placeholder="nome produto" autocomplete="on"
+                  required>
                 <span class="error">This field is required</span>
               </div>
-              <div class="form-group col-md-6">
-                <label for="date-birth">Data de Nascimento</label>
-                * <input type="text" class="form-control" id="date-birth" placeholder="dd/mm/aaaa" data-inputmask="'mask': '99/99/9999'" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col col-md-4 form-group first ">
-                <label for="nacionality">Nacionalidade</label>
-                <input type="text" class="form-control" id="nacionality" placeholder="pais de origem">
-              </div>
-              <div class="col col-md-4 second">
-                <label for="city">Cidade</label>
-                <input class="form-control" type="text" id="city" placeholder="cidade">
-              </div>
-              <div class="col col-md-4 first ">
-                <label for="uf">UF</label>
-                <select class="form-control" name="uf" id="uf">
-                  <option value="">Selecione</option>
-                  <option value="AC">AC</option>
-                  <option value="AL">AL</option>
-                  <option value="AM">AM</option>
-                  <option value="AP">AP</option>
-                  <option value="BA">BA</option>
-                  <option value="CE">CE</option>
-                  <option value="DF">DF</option>
-                  <option value="ES">ES</option>
-                  <option value="GO">GO</option>
-                  <option value="MA">MA</option>
-                  <option value="MG">MG</option>
-                  <option value="MS">MS</option>
-                  <option value="MT">MT</option>
-                  <option value="PA">PA</option>
-                  <option value="PB">PB</option>
-                  <option value="PE">PE</option>
-                  <option value="PI">PI</option>
-                  <option value="PR">PR</option>
-                  <option value="RJ">RJ</option>
-                  <option value="RN">RN</option>
-                  <option value="RS">RS</option>
-                  <option value="RO">RO</option>
-                  <option value="RR">RR</option>
-                  <option value="SC">SC</option>
-                  <option value="SE">SE</option>
-                  <option value="SP">SP</option>
-                  <option value="TO">TO</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-6 form-group">
-                <label for="father-name">Nome do Pai Completo</label>
-                <input type="text" class="form-control" id="father-name" placeholder="nome do pai">
-              </div>
-              <div class="col-md-6  form-group">
-                <label for="mother-name">Nome da Mãe Completo</label>
-                <input type="text" class="form-control" id="mother-name" placeholder="nome da mae">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group col-md-2">
-                <label for="rg">RG</label>
-               * <input type="text" class="form-control" id="rg" placeholder="RG">
-              </div>
-              <div class="form-group col-md-2">
-                <label for="emissor">Orgão Emissor</label>
-                <input type="text" class="form-control" id="orgao-emissor" placeholder="Orgão Emissor">
-              </div>
-              <div class="col-md-4 form-group ">
-                <label for="cpf">CPF</label>
-               * <input type="text" class="form-control cpf" id="cpf" placeholder="999.999.999-99" data-inputmask="'mask': '999.999.999-99'">
-              </div>
-              <div class="col-md-4 form-group ">
-                <label for="inputEstadoCivil">Estado Civil</label>
-                <select name="estado_civil" class="form-control" id="inputEstadoCivil">
-                  <option value="">Selecione</option>
-                  <option value="Solteiro">Solteiro</option>
-                  <option value="Casado">Casado</option>
-                  <option value="Separado">Separado</option>
-                  <option value="Divorciado">Divorciado</option>
-                  <option value="Viúvo">Viúvo</option>
-                  <option value="Amasiado">Amasiado</option>
-                </select>
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="rg">Telefone Res</label>
-                  <input type="text" class="form-control fone" id="telefoneRes" placeholder="(99) 9999-9999" data-inputmask="'mask': '(99) 9999-9999'">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="rg">Telefone Cel</label>
-                  <input type="text" class="form-control fone" id="telefoneCel" placeholder="(99) 99999-9999" data-inputmask="'mask': '(99) [9]9999-9999'">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="rg">Email</label>
-                  <input type="text" class="form-control" id="email" placeholder="email@dominio.com">
-              </div>
             </div>
           </form>
         </div>
       </section>
     </fieldset>
-    <fieldset name="endereco-residencial">
-      <legend>Endereço Residencial</legend>
-      <section>
-        <div class="container endereco">
-          <form class="form-control">
-            <div class="form-row">
-              <div class="form-group col-md-4">
-                <label for="cep">CEP</label>
-                <input id="cep" name="cep" type="text" placeholder="99999-999" class="form-control input-md cep">
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="rua">Rua</label>
-                <input id="rua" name="rua" type="text" placeholder="logradouro" class="form-control input-md">
-              </div>
-              <div class="col-md-2  form-group">
-                <label for="numero">Nº</label>
-                <input id="numero" name="numero" type="text" placeholder="999" class="form-control input-md">
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="bairro">Bairro</label>
-                <input id="bairro" name="bairro" type="text" placeholder="bairro" class="form-control input-md">
-              </div>
-              <div class="col-md-4 form-group">
-                <label for="complemento">Complemento</label>
-                <input id="complemento" name="complemento" type="text" placeholder="casa, apto" class="form-control input-md">
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="cidade">Cidade</label>
-                <input id="cidade" name="cidade" type="text" placeholder="cidade" class="form-control input-md">
-              </div>
-              <div class="col-md-6 form-group">
-                <label for="uf-endereco">UF</label>
-                <select class="form-control" name="uf" id="uf-endereco">
-                  <option value="">Selecione</option>
-                  <option value="AC">AC</option>
-                  <option value="AL">AL</option>
-                  <option value="AM">AM</option>
-                  <option value="AP">AP</option>
-                  <option value="BA">BA</option>
-                  <option value="CE">CE</option>
-                  <option value="DF">DF</option>
-                  <option value="ES">ES</option>
-                  <option value="GO">GO</option>
-                  <option value="MA">MA</option>
-                  <option value="MG">MG</option>
-                  <option value="MS">MS</option>
-                  <option value="MT">MT</option>
-                  <option value="PA">PA</option>
-                  <option value="PB">PB</option>
-                  <option value="PE">PE</option>
-                  <option value="PI">PI</option>
-                  <option value="PR">PR</option>
-                  <option value="RJ">RJ</option>
-                  <option value="RN">RN</option>
-                  <option value="RS">RS</option>
-                  <option value="RO">RO</option>
-                  <option value="RR">RR</option>
-                  <option value="SC">SC</option>
-                  <option value="SE">SE</option>
-                  <option value="SP">SP</option>
-                  <option value="TO">TO</option>
-                </select>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
-    </fieldset>
-    <fieldset name="dados-profissionais">
-      <legend>Dados Profissionais</legend>
-      <section>
-        <div class="container dados-profissionais">
-          <form class="form-control">
-            <div class="form-group">
-              <label for="inputProfissao">Profissão</label>
-              <input type="text" class="form-control" id="inputProfissao" placeholder="profissão">
-            </div>
-            <div class="form-row" name="aposentadoriaChecbox" id="aposentadoriaChecbox">
-              <div class="form-group col-md-8">
-                <label for="aposentadoria">Aposentado?</label>
-                <select name="aposentadoria" id="aposentadoria">
-                  <option value=true selected>Selecione</option>
-                  <option value=false>Não</option>
-                  <option value=true>Sim</option>
-                </select>
-              </div>
-            </div>
-            <div class="container endereco" id="enderecoTrabalho">
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-sm-8">
-                    <label for="inputLocalTrabalho">Empresa</label>
-                    <input class="form-control input-md" type="text" name="inputLocalTrabalho" id="inputLocalTrabalho"
-                      placeholder="empresa" disabled>
-                  </div>
-                  <div class="form-group col-sm-4">
-                    <label for="telComercial">Telefone Comercial</label>
-                    <input class="form-control input-md" type="text" name="telComercial" id="telComercial" placeholder="(99)9999-9999" data-inputmask="'mask': '(99)9999-9999'" disabled>
-                  </div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="cepComercial">CEP</label>
-                    <input id="cepComercial" name="cep" type="text" placeholder="99999-999" class="form-control input-md cep"
-                      disabled>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="logradouroComercial">Rua</label>
-                    <input id="logradouroComercial" name="logradouroComercial" type="text" placeholder="logradouro"
-                      class="form-control input-md" disabled>
-                  </div>
-                  <div class="col-md-2  form-group">
-                    <label for="numeroComercial">Nº</label>
-                    <input id="numeroComercial" name="numeroComercial" type="text" placeholder="999" class="form-control input-md"
-                      disabled>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="bairroComercial">Bairro</label>
-                    <input id="bairroComercial" name="bairroComercial" type="text" placeholder="bairro" class="form-control input-md"
-                      disabled>
-                  </div>
-                  <div class="col-md-4 form-group">
-                    <label for="complementoComercial">Complemento</label>
-                    <input id="complementoComercial" name="complementoComercial" type="text" placeholder="casa, apto"
-                      class="form-control input-md" disabled>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="cidadeComercial">Cidade</label>
-                    <input id="cidadeComercial" name="cidadeComercial" type="text" placeholder="cidade" class="form-control input-md"
-                      disabled>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <label for="ufComercial">UF</label>
-                    <select class="form-control" name="uf" id="ufComercial" disabled>
-                      <option value="">Selecione</option>
-                      <option value="AC">AC</option>
-                      <option value="AL">AL</option>
-                      <option value="AM">AM</option>
-                      <option value="AP">AP</option>
-                      <option value="BA">BA</option>
-                      <option value="CE">CE</option>
-                      <option value="DF">DF</option>
-                      <option value="ES">ES</option>
-                      <option value="GO">GO</option>
-                      <option value="MA">MA</option>
-                      <option value="MG">MG</option>
-                      <option value="MS">MS</option>
-                      <option value="MT">MT</option>
-                      <option value="PA">PA</option>
-                      <option value="PB">PB</option>
-                      <option value="PE">PE</option>
-                      <option value="PI">PI</option>
-                      <option value="PR">PR</option>
-                      <option value="RJ">RJ</option>
-                      <option value="RN">RN</option>
-                      <option value="RS">RS</option>
-                      <option value="RO">RO</option>
-                      <option value="RR">RR</option>
-                      <option value="SC">SC</option>
-                      <option value="SE">SE</option>
-                      <option value="SP">SP</option>
-                      <option value="TO">TO</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </form>
-        </div>
-      </section>
-    </fieldset>
-    <fieldset name="escolaridade">
-      <legend>Escolaridade</legend>
-      <section>
-        <div class="container escolaridade ">
-          <form class="form-control">
-            <div class="form-row">
-              <div class="form-group col-sm-4">
-                <label for="escolaridade">Grau de Instrução</label>
-                <select class="form-control" name="escolaridade" id="escolaridade">
-                  <option value="0" selected>Selecione</option>
-                  <option value="1">Fundamental - Incompleto</option>
-                  <option value="2">Fundamental - Completo</option>
-                  <option value="3">Médio - Incompleto</option>
-                  <option value="4">Médio - Completo</option>
-                  <option value="5">Superior - Incompleto</option>
-                  <option value="6">Superior - Completo</option>
-                  <option value="7">Pós-graduação - Incompleto</option>
-                  <option value="8">Pós-graduação - Completo</option>
-                  <option value="9">Pós-graduação Mestrado - Incompleto</option>
-                  <option value="10">Pós-graduação Mestrado - Completo</option>
-                  <option value="11">Pós-graduação Doutorado - Incompleto</option>
-                  <option value="12">Pós-graduação Doutorado - Completo</option>
-                  <option value="13">Pós Doutorado - Incompleto</option>
-                  <option value="14">Pós Doutorado - Completo</option>
-                  <option value="15">Outros</option>
-                </select>
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="cursoEscolaridade">Curso</label>
-                <input class="form-control" type="text" id="cursoEscolaridade" placeholder="curso" disabled>
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="instituicaoEscolaridade">Instituição</label>
-                <input class="form-control" type="text" id="instituicaoEscolaridade" placeholder="instituição" disabled>
-              </div>
-            </div>
-            <div class="form-group ">
-              <label for="descricaoAtividades">Outras habilidades que você desempenha, as quais poderiam ser
-                desenvolvidas como voluntário(a) na casa</label>
-              <textarea class="form-control" name="descricaoAtividades" id="descricaoAtividades" cols="60" rows="5"></textarea>
-            </div>
-          </form>
-        </div>
-      </section>
-    </fieldset>
-    <fieldset name="transferencia">
-      <legend>Transferência</legend>
+    <fieldset name="insumos">
+      <legend>Insumos</legend>
       <div class="container transferencia">
         <form class="form-control">
-          <div class="form-group">
-            <label for="transferencia">Você vem transferido de algum outro Centro Espírita?</label>
-            <select name="transferencia" id="transferencia">
-              <option value="" selected>Selecione</option>
-              <option value="Não">Não</option>
-              <option value="Sim">Sim</option>
-            </select>
-          </div>
-          <div class="form-row dados-transferencia">
-            <div class="form-group col-md-4">
-              <label for="nomeCentroEspirita">Nome do Centro Espírita</label>
-              <input type="text" class="form-control" id="nomeCentroEspirita" placeholder="" disabled>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="cidadeCentroEspirita">Cidade</label>
-              <input type="text" class="form-control" id="cidadeCentroEspirita" disabled>
-            </div>
-            <div class="form-group col-md-4">
-              <label for="ufCentroEspirita">UF</label>
-              <select class="form-control" name="uf" id="ufCentroEspirita" disabled>
-                <option value="">Selecione</option>
-                <option value="AC">AC</option>
-                <option value="AL">AL</option>
-                <option value="AM">AM</option>
-                <option value="AP">AP</option>
-                <option value="BA">BA</option>
-                <option value="CE">CE</option>
-                <option value="DF">DF</option>
-                <option value="ES">ES</option>
-                <option value="GO">GO</option>
-                <option value="MA">MA</option>
-                <option value="MG">MG</option>
-                <option value="MS">MS</option>
-                <option value="MT">MT</option>
-                <option value="PA">PA</option>
-                <option value="PB">PB</option>
-                <option value="PE">PE</option>
-                <option value="PI">PI</option>
-                <option value="PR">PR</option>
-                <option value="RJ">RJ</option>
-                <option value="RN">RN</option>
-                <option value="RS">RS</option>
-                <option value="RO">RO</option>
-                <option value="RR">RR</option>
-                <option value="SC">SC</option>
-                <option value="SE">SE</option>
-                <option value="SP">SP</option>
-                <option value="TO">TO</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="tempoCentroEspirita">Tempo que frequentou esse Centro Espírita</label>
-              <input type="text" class="form-control" id="tempoCentroEspirita" disabled>
-            </div>
-          </div>
-          <div>
-            <h6 for="estudosDoutrina">Estudos da Doutrina Espírita que você desenvolveu em grupo no (s) CENTRO(s)
-              ESPÍRITA(s) ANTERIOR(es)</h6>
-          </div>
-
-
-          <div class="form-group estudo-obras">
-            <label for="tomosESede">Tomos do ESDE - Quais?</label>
-            <input type="text" class="form-control col-md-6" id="tomosESede">
-          </div>
-          <div class="form-group estudo-obras">
-            <label for="tomosEade">Tomos do EADE - Quais?</label>
-            <input type="text" class="form-control col-md-6" id="tomosEade">
-          </div>
-          <div class="form-group estudo-obras">
-            <label for="obrasBasicas">Obras Básicas - Quais?</label>
-            <input type="text" class="form-control col-md-6" id="obrasBasicas">
-          </div>
-          <div class="form-group estudo-obras">
-            <label for="outrasObras">Outras obras - Quais?</label>
-            <input type="text" class="form-control col-md-6" id="outrasObras">
-          </div>
           <div class="form-row">
             <div class="form-group col-sm-8">
-              <h6>Atividades voluntárias que você desenvolveu no (s) CENTRO(s) ESPÍRITA(s) ANTERIOR(es)</h6>
+              <h6>Lista de Insumos do Produto</h6>
             </div>
-
           </div>
-          <div class="container-fluid lista-atividades">
-            <table class="table atividade-table" id="atividadeTable">
+          <div class="container-fluid lista-insumos">
+            <table class="table insumos" id="insumosTable">
               <thead>
                 <tr id="tableHeader">
-                  <th scope="col">Atividade</th>
-                  <th scope="col">Quanto Tempo</th>
+                  <th scope="col">Insumo</th>
+                  <th scope="col">Quantidade %</th>
                   <th>
                     <div>
-                      <button class="btn btn-outline-secondary add-atividade" id="adicionaAtividade" type="button"><i
-                          class="fa fa-plus"></i> Adiconar Atividade</button>
+                      <button class="btn btn-outline-secondary add-insumo" id="adicionaInsumo" type="button"><i
+                          class="fa fa-plus"></i> Adiconar Insumo</button>
                     </div>
                   </th>
                 </tr>
               </thead>
-              <tbody id="atividadeTableBody">
-                <tr class="table-row atividade-item" id="atividadeItem">
+              <tbody id="insumoTableBody">
+                <tr class="table-row insumo-item" id="insumoItem">
                   <td>
                     <div class="col-sm-6">
-                      <input type="text" class="descricao-atividade" id="atividadeVoluntaria">
-                    </div>
+                      <input type="text" class="descricao-insumo" id="descricaoInsumo" placeholder="descricao">
+                      <select type="select" class="descricao-insumo" id="descricaoInsumo" placeholder="descricao">
+                        
+                        <option value="select">Selecione um insumo</option>
+                        {{#each listaInsumos}}
+                        <option value="Óleo Essencial">{{nome}}</option>
+                        {{/each}}
+                        
+                      </select>
+                      </div>
                   </td>
                   <td>
                     <div class="col-sm-4">
-                      <input type="text" class="tempo-atividade" id="tempoAtividadeVoluntaria">
+                      <input type="text" class="quantidade-insumo" id="quantidadeInsumo" placeholder="% no produto">
                     </div>
                   </td>
-                  <td><button type="button" class="btn btn-sm btn-outline-info btn-delete-atividade" id="removeAtividadeVoluntaria"
+                  <td><button type="button" class="btn btn-sm btn-outline-info btn-delete-insumo" id="removeInsumo"
                       disabled><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
               </tbody>
             </table>
-          </div>
-
-          <div class="container" id="experienciasPraticas">
-            <div class="form-group">
-              <h6>Você tem experiência em alguma das práticas abaixo?</h6>
-            </div>
-            <table class="table table-hover experiencia-praticas">
-              <thead>
-                <tr>
-                  <th scope="col" width="50">Selecione</th>
-                  <th scope="col" width="100">Atividade</th>
-                  <th scope="col" width="100">Tempo de Atividade</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumSensitivo" id="mediumSensitivo"
-                      value="Medium Sensitivo" data-target="mediumSensitivoTempo">
-                  </th>
-                  <td>Méduim Sensitivo</td>
-                  <td>
-                    <input class="input-time " type="text" name="mediumSensitivoTempo" id="mediumSensitivoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumPsicofonico" id="mediumPsicofonico"
-                      value="Medium Psicofonico" data-target="mediumPsicofonicoTempo">
-                  </th>
-                  <td>Médium Psicofônico</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumPsicofonicoTempo" id="mediumPsicofonicoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumPsicografo" id="mediumPsicografo"
-                      value="Medium Psicografo" data-target="mediumPsicografoTempo">
-                  </th>
-                  <td>Médium Psicógrafo</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumPsicografo" id="mediumPsicografoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumPictografo" id="mediumPictografo"
-                      value="Medium Pictografo" data-target="mediumPictografoTempo">
-                  </th>
-                  <td>Médium Pictógrafo</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumPictografoTempo" id="mediumPictografoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumVidente" id="mediumVidente"
-                      value="Medium Vidente" data-target="mediumVidenteTempo">
-                  </th>
-                  <td>Médium Vidente</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumVidenteTempo" id="mediumVidenteTempo" placeholder=""
-                      disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumAudiente" id="mediumAudiente"
-                      value="Medium Audiente" data-target="mediumAudienteTempo">
-                  </th>
-                  <td>Médium Audiente</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumAudienteTempo" id="mediumAudienteTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="mediumDesdobramento" id="mediumDesdobramento"
-                      value="Medium Desdobramento" data-target="mediumDesdobramentoTempo">
-                  </th>
-                  <td>Médium de Desdobramento</td>
-                  <td>
-                    <input class="input-time" type="text" name="mediumDesdobramentoTempo" id="mediumDesdobramentoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="dirigenteGrupoMediunico" id="dirigenteGrupoMediunico"
-                      value="Dirigente Grupo Mediunico" data-target="dirigenteGrupoMediunicoTempo">
-                  </th>
-                  <td>Dirigente de Grupo Mediúnico</td>
-                  <td>
-                    <input class="input-time" type="text" name="dirigenteGrupoMediunicoTempo" id="dirigenteGrupoMediunicoTempo"
-                      placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="dialogador" id="dialogador" value="Dialogador"
-                      data-target="dialogadorTempo">
-                  </th>
-                  <td>Dialogador</td>
-                  <td>
-                    <input class="input-time" type="text" name="dialogadorTempo" id="dialogadorTempo" placeholder=""
-                      disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="susutentacao" id="susutentacao"
-                      value="Susutentacao" data-target="susutentacaoTempo">
-                  </th>
-                  <td>Sustentação</td>
-                  <td>
-                    <input class="input-time" type="text" name="susutentacaoTempo" id="susutentacaoTempo" placeholder=""
-                      disabled>
-                  </td>
-                </tr>
-                <tr class="experiencia-pratica">
-                  <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="outros" id="outros" value="Outros"
-                      data-target="outrosTempo">
-                  </th>
-                  <td>Outros</td>
-                  <td>
-                    <input class="input-time" type="text" name="outrosTempo" id="outrosTempo" placeholder="" disabled>
-                  </td>
-                </tr>
-
-              </tbody>
-            </table>
-
           </div>
         </form>
       </div>
@@ -687,6 +164,65 @@
 
 </template>
 
+<template name="novoInsumo">
+  <div class="container">
+    <fieldset name="dados-insumo">
+      <legend><i class="fa fa-address-card"></i> Dados Insumo</legend>
+      <section>
+        <div class="container dados-insumo">
+          <form class="form-control validations-require">
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="insumo-nome">Insumo</label>
+                <input type="text" class="form-control" id="insumo-nome" placeholder="nome do insumo" autocomplete="on">
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="selectCategoriaInsumo">Categoria</label>
+                  <select class="form-control categoria-insumo" name="categoriaInsumo"
+                    id="selectCategoriaInsumo">
+                    <option value="select">Selecione uma categoria</option>
+                    <option value="Óleo Essencial">Óleo Essencial</option>
+                    <option value="Óleos Vegetais">Óleos Vegetais</option>
+                    <option value="Ativo Seco">Ativo Seco</option>
+                    <option value="Ativo Liquido">Ativo Liquido</option>
+                    <option value="Conservantes">Conservantes</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="insumo-quantidade">Quantidade</label>
+                <input type="text" class="form-control" id="insumo-quantidade" placeholder="quantidade de insumo"
+                  autocomplete="on">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="insumo-valor-total">Valor Total</label>
+                <input type="text" class="form-control" id="insumo-valor-total" placeholder="valor total" autocomplete="on">
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="insumo-valor-grama">Valor por Grama R$</label>
+                <input type="text" class="form-control" id="insumo-valor-grama" placeholder="valor por grama"
+                  autocomplete="on" disabled>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section>
+                    <div class="container button">
+                      <form class="form-control validations-require">
+                        <div class="form-group">
+                          <label for="submit"></label>
+                          <button type="submit" class="btn btn-primary" id="cadastrar">Cadastrar</button>
+                        </div>
+                      </form>
+                    </div>
+      </section>
+    </fieldset>
+  </div>
+
+</template>
 
 <template name="buscaParticipante">
   <div class="container busca-participante">
@@ -712,9 +248,9 @@
           </div>
           <button type="button" id="botaoBuscar" class="btn btn-success"><i class="fa fa-search"></i></button>
           <div class="form-group ml-3 mx-sm-3">
-              <button type="button" id="limparPesquisa" class="btn btn-secondary">Limpar Pesquisa</button>
+            <button type="button" id="limparPesquisa" class="btn btn-secondary">Limpar Pesquisa</button>
           </div>
-          
+
         </form>
       </div>
 
@@ -734,9 +270,12 @@
             <td>{{nome}}</td>
             <td>{{telefone_celular}}</td>
             <td>{{email}}</td>
-            <td class="td-acoes"><button id="editarContato" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i></button></td>
-            <td class="td-acoes"><button id="addAtividade" class="btn btn-sm btn-outline-secondary"><i class="fa fa-edit"></i></button></td>
-            <td class="td-acoes"><button id="deletarContato" class="btn btn-sm btn-outline-danger"><i class="fa fa-trash"></i></button></td>
+            <td class="td-acoes"><button id="editarContato" class="btn btn-sm btn-outline-primary"><i
+                  class="fa fa-edit"></i></button></td>
+            <td class="td-acoes"><button id="addAtividade" class="btn btn-sm btn-outline-secondary"><i
+                  class="fa fa-edit"></i></button></td>
+            <td class="td-acoes"><button id="deletarContato" class="btn btn-sm btn-outline-danger"><i
+                  class="fa fa-trash"></i></button></td>
           </tr>
           {{/each}}
         </tbody>
@@ -755,18 +294,20 @@
 
 <template name="editarParticipante">
 
-    
-  <div class="container" id="editarParticipanteContainer" >
+
+  <div class="container" id="editarParticipanteContainer">
     <fieldset name="dados-pessoais">
-        <div class="row">
-          <div class="col-md-10">
-              <legend><i class="fa fa-address-card"></i> Dados Pessoais</legend> 
-          </div>
-          <div  class="col-md-2">
-              <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target=".collapse" aria-expanded="false" aria-controls="multiCollapseExample2" style="float:right; margin-bottom: 20px ;">Mostrar todos os dados</button>
-          </div>
+      <div class="row">
+        <div class="col-md-10">
+          <legend><i class="fa fa-address-card"></i> Dados Pessoais</legend>
         </div>
-       <section>
+        <div class="col-md-2">
+          <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target=".collapse"
+            aria-expanded="false" aria-controls="multiCollapseExample2"
+            style="float:right; margin-bottom: 20px ;">Mostrar todos os dados</button>
+        </div>
+      </div>
+      <section>
         <div class="container dados-pessoais ">
           <form class="form-control">
             <div class="form-row">
@@ -777,13 +318,15 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="date-birth">Data de Nascimento *</label>
-                <input type="text" class="form-control date" id="date-birth" placeholder="dd/mm/aaaa" value="{{nascimento}}" data-inputmask="'mask': '99/99/9999'">
+                <input type="text" class="form-control date" id="date-birth" placeholder="dd/mm/aaaa"
+                  value="{{nascimento}}" data-inputmask="'mask': '99/99/9999'">
               </div>
             </div>
             <div class="form-row">
               <div class="col col-md-4 form-group first ">
                 <label for="nacionality">Nacionalidade</label>
-                <input type="text" class="form-control" id="nacionality" placeholder="pais de origem" value="{{nacionalidade}}">
+                <input type="text" class="form-control" id="nacionality" placeholder="pais de origem"
+                  value="{{nacionalidade}}">
               </div>
               <div class="col col-md-4 second">
                 <label for="city">Cidade</label>
@@ -840,11 +383,13 @@
               </div>
               <div class="form-group col-md-2">
                 <label for="emissor">Orgão Emissor</label>
-                <input type="text" class="form-control" id="orgao-emissor" placeholder="Orgão Emissor" value="{{orgao_emissor}}">
+                <input type="text" class="form-control" id="orgao-emissor" placeholder="Orgão Emissor"
+                  value="{{orgao_emissor}}">
               </div>
               <div class="col-md-4 form-group ">
                 <label for="cpf">CPF *</label>
-                <input type="text" class="form-control cpf" id="cpf" placeholder="999.999.999-99" value="{{cpf}}" data-inputmask="'mask': '999.999.999-99'">
+                <input type="text" class="form-control cpf" id="cpf" placeholder="999.999.999-99" value="{{cpf}}"
+                  data-inputmask="'mask': '999.999.999-99'">
               </div>
               <div class="col-md-4 form-group ">
                 <label for="inputEstadoCivil">Estado Civil</label>
@@ -859,16 +404,18 @@
                 </select>
               </div>
               <div class="form-group col-md-4">
-                  <label for="rg">Telefone Res</label>
-                  <input type="text" class="form-control fone" id="telefoneRes" placeholder="(99) 9999-9999" data-inputmask="'mask': '(99) 9999-9999'" value="{{telefone_residencial}}">
+                <label for="rg">Telefone Res</label>
+                <input type="text" class="form-control fone" id="telefoneRes" placeholder="(99) 9999-9999"
+                  data-inputmask="'mask': '(99) 9999-9999'" value="{{telefone_residencial}}">
               </div>
               <div class="form-group col-md-4">
-                  <label for="rg">Telefone Cel</label>
-                  <input type="text" class="form-control fone" id="telefoneCel" placeholder="(99) 99999-9999" data-inputmask="'mask': '(99) [9]9999-9999'" value="{{telefone_celular}}">
+                <label for="rg">Telefone Cel</label>
+                <input type="text" class="form-control fone" id="telefoneCel" placeholder="(99) 99999-9999"
+                  data-inputmask="'mask': '(99) [9]9999-9999'" value="{{telefone_celular}}">
               </div>
               <div class="form-group col-md-4">
-                  <label for="rg">Email</label>
-                  <input type="text" class="form-control" id="email" value="{{email}}">
+                <label for="rg">Email</label>
+                <input type="text" class="form-control" id="email" value="{{email}}">
               </div>
             </div>
           </form>
@@ -883,27 +430,33 @@
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="cep">CEP</label>
-                <input id="cep" name="cep" type="text" placeholder="99999-999" class="form-control input-md" value="{{endereco.cep}}">
+                <input id="cep" name="cep" type="text" placeholder="99999-999" class="form-control input-md"
+                  value="{{endereco.cep}}">
               </div>
               <div class="col-md-6 form-group">
                 <label for="rua">Rua</label>
-                <input id="rua" name="rua" type="text" placeholder="logradouro" class="form-control input-md" value={{endereco.logradouro}}>
+                <input id="rua" name="rua" type="text" placeholder="logradouro" class="form-control input-md"
+                  value={{endereco.logradouro}}>
               </div>
               <div class="col-md-2  form-group">
                 <label for="numero">Nº</label>
-                <input id="numero" name="numero" type="text" placeholder="999" class="form-control input-md" value="{{endereco.numero}}">
+                <input id="numero" name="numero" type="text" placeholder="999" class="form-control input-md"
+                  value="{{endereco.numero}}">
               </div>
               <div class="col-md-6 form-group">
                 <label for="bairro">Bairro</label>
-                <input id="bairro" name="bairro" type="text" placeholder="bairro" class="form-control input-md" value="{{endereco.bairro}}">
+                <input id="bairro" name="bairro" type="text" placeholder="bairro" class="form-control input-md"
+                  value="{{endereco.bairro}}">
               </div>
               <div class="col-md-4 form-group">
                 <label for="complemento">Complemento</label>
-                <input id="complemento" name="complemento" type="text" placeholder="casa, apto" class="form-control input-md" value="{{endereco.complemento}}">
+                <input id="complemento" name="complemento" type="text" placeholder="casa, apto"
+                  class="form-control input-md" value="{{endereco.complemento}}">
               </div>
               <div class="col-md-6 form-group">
                 <label for="cidade">Cidade</label>
-                <input id="cidade" name="cidade" type="text" placeholder="cidade" class="form-control input-md" value="{{endereco.cidade}}">
+                <input id="cidade" name="cidade" type="text" placeholder="cidade" class="form-control input-md"
+                  value="{{endereco.cidade}}">
               </div>
               <div class="col-md-6 form-group">
                 <label for="uf-endereco">UF</label>
@@ -950,7 +503,8 @@
           <form class="form-control">
             <div class="form-group">
               <label for="inputProfissao">Profissão</label>
-              <input type="text" class="form-control" id="inputProfissao" placeholder="profissão" value="{{profissao.atividade}}">
+              <input type="text" class="form-control" id="inputProfissao" placeholder="profissão"
+                value="{{profissao.atividade}}">
             </div>
             <div class="form-row" name="aposentadoriaChecbox" id="aposentadoriaChecbox">
               <div class="form-group col-md-8">
@@ -968,18 +522,20 @@
                   <div class="form-row">
                     <div class="form-group col-sm-8">
                       <label for="inputLocalTrabalho">Empresa</label>
-                      <input class="form-control input-md" type="text" name="inputLocalTrabalho" id="inputLocalTrabalho" placeholder="empresa" value={{profissao.local_trabalho}}>
+                      <input class="form-control input-md" type="text" name="inputLocalTrabalho" id="inputLocalTrabalho"
+                        placeholder="empresa" value={{profissao.local_trabalho}}>
                     </div>
                     <div class="form-group col-sm-4">
                       <label for="telComercial">Telefone Comercial</label>
-                      <input class="form-control input-md" type="text" name="telComercial" id="telComercial" placeholder="(99)9999-9999" value="{{profissao.tel}}" data-inputmask="'mask': '(99)9999-9999'">
+                      <input class="form-control input-md" type="text" name="telComercial" id="telComercial"
+                        placeholder="(99)9999-9999" value="{{profissao.tel}}" data-inputmask="'mask': '(99)9999-9999'">
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-4">
                       <label for="cepComercial">CEP</label>
-                      <input id="cepComercial cep" name="cep" type="text" placeholder="99999-999" class="form-control input-md"
-                        value="{{endereco_comercial.cep}}">
+                      <input id="cepComercial cep" name="cep" type="text" placeholder="99999-999"
+                        class="form-control input-md" value="{{endereco_comercial.cep}}">
                     </div>
                     <div class="col-md-6 form-group">
                       <label for="logradouroComercial">Rua</label>
@@ -988,13 +544,13 @@
                     </div>
                     <div class="col-md-2  form-group">
                       <label for="numeroComercial">Nº</label>
-                      <input id="numeroComercial" name="numeroComercial" type="text" placeholder="999" class="form-control input-md"
-                        value="{{endereco_comercial.numero}}">
+                      <input id="numeroComercial" name="numeroComercial" type="text" placeholder="999"
+                        class="form-control input-md" value="{{endereco_comercial.numero}}">
                     </div>
                     <div class="col-md-6 form-group">
                       <label for="bairroComercial">Bairro</label>
-                      <input id="bairroComercial" name="bairroComercial" type="text" placeholder="bairro" class="form-control input-md"
-                        value="{{endereco_comercial.bairro}}">
+                      <input id="bairroComercial" name="bairroComercial" type="text" placeholder="bairro"
+                        class="form-control input-md" value="{{endereco_comercial.bairro}}">
                     </div>
                     <div class="col-md-4 form-group">
                       <label for="complementoComercial">Complemento</label>
@@ -1003,8 +559,8 @@
                     </div>
                     <div class="col-md-6 form-group">
                       <label for="cidadeComercial">Cidade</label>
-                      <input id="cidadeComercial" name="cidadeComercial" type="text" placeholder="cidade" class="form-control input-md"
-                        value="{{endereco_comercial.cidade}}">
+                      <input id="cidadeComercial" name="cidadeComercial" type="text" placeholder="cidade"
+                        class="form-control input-md" value="{{endereco_comercial.cidade}}">
                     </div>
                     <div class="col-md-6 form-group">
                       <label for="ufComercial">UF</label>
@@ -1040,11 +596,12 @@
                       </select>
                     </div>
                   </div>
-                  
+
                 </fieldset>
                 <div>
-                    <button style="float:left" id="editarProfissao" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Editar dados da Empresa</button>
-                </div> <br> <br> 
+                  <button style="float:left" id="editarProfissao" class="btn btn-sm btn-outline-primary"><i
+                      class="fa fa-edit"></i> Editar dados da Empresa</button>
+                </div> <br> <br>
 
               </form>
             </div>
@@ -1057,61 +614,65 @@
       <section>
         <div class="container escolaridade ">
           <form class="form-control">
-              <div class="form-row">
-                <div class="form-group col-sm-4">
-                  <label for="escolaridade">Grau de Instrução</label>
-                  <select class="form-control" name="escolaridade" id="escolaridade" value="{{escolaridade.grau}}">
-                    <option value={{escolaridade.grau}} selected>{{escolaridade.grau}}</option>
-                    <option value="1">Fundamental - Incompleto</option>
-                    <option value="2">Fundamental - Completo</option>
-                    <option value="3">Médio - Incompleto</option>
-                    <option value="4">Médio - Completo</option>
-                    <option value="5">Superior - Incompleto</option>
-                    <option value="6">Superior - Completo</option>
-                    <option value="7">Pós-graduação - Incompleto</option>
-                    <option value="8">Pós-graduação - Completo</option>
-                    <option value="9">Pós-graduação Mestrado - Incompleto</option>
-                    <option value="10">Pós-graduação Mestrado - Completo</option>
-                    <option value="11">Pós-graduação Doutorado - Incompleto</option>
-                    <option value="12">Pós-graduação Doutorado - Completo</option>
-                    <option value="13">Pós Doutorado - Incompleto</option>
-                    <option value="14">Pós Doutorado - Completo</option>
-                    <option value="15">Outros</option>
-                  </select>
-                </div>
-                <fieldset id="dadosEscolares" disabled="disabled">
-                    <div class="form-row">
-                        <div class="form-group col-sm-6">
-                            <label for="cursoEscolaridade">Curso</label>
-                            <input class="form-control" type="text" id="cursoEscolaridade" placeholder="curso" value="{{escolaridade.curso}}">
-                          </div>
-                          <div class="form-group col-sm-6">
-                            <label for="instituicaoEscolaridade">Instituição</label>
-                            <input class="form-control" type="text" id="instituicaoEscolaridade" placeholder="instituição" value="{{escolaridade.instituicao}}">
-                          </div>
-                    </div>
-                   
-                </fieldset>
-               
+            <div class="form-row">
+              <div class="form-group col-sm-4">
+                <label for="escolaridade">Grau de Instrução</label>
+                <select class="form-control" name="escolaridade" id="escolaridade" value="{{escolaridade.grau}}">
+                  <option value={{escolaridade.grau}} selected>{{escolaridade.grau}}</option>
+                  <option value="1">Fundamental - Incompleto</option>
+                  <option value="2">Fundamental - Completo</option>
+                  <option value="3">Médio - Incompleto</option>
+                  <option value="4">Médio - Completo</option>
+                  <option value="5">Superior - Incompleto</option>
+                  <option value="6">Superior - Completo</option>
+                  <option value="7">Pós-graduação - Incompleto</option>
+                  <option value="8">Pós-graduação - Completo</option>
+                  <option value="9">Pós-graduação Mestrado - Incompleto</option>
+                  <option value="10">Pós-graduação Mestrado - Completo</option>
+                  <option value="11">Pós-graduação Doutorado - Incompleto</option>
+                  <option value="12">Pós-graduação Doutorado - Completo</option>
+                  <option value="13">Pós Doutorado - Incompleto</option>
+                  <option value="14">Pós Doutorado - Completo</option>
+                  <option value="15">Outros</option>
+                </select>
               </div>
-              <div class="form-group ">
-                  <button style="float:left" id="editarDadosEscolares" class="btn btn-sm btn-outline-primary "><i class="fa fa-edit"></i> Editar dados Escolares</button>
-              </div> <br>
-              <div class="form-group ">
-                <label for="descricaoAtividades">Outras habilidades que você desempenha, as quais poderiam ser
-                  desenvolvidas como voluntário(a) na casa</label>
-                <textarea class="form-control" name="descricaoAtividades" id="descricaoAtividades" cols="60" rows="5" value={{escolaridade.descricao_atividades}}>
+              <fieldset id="dadosEscolares" disabled="disabled">
+                <div class="form-row">
+                  <div class="form-group col-sm-6">
+                    <label for="cursoEscolaridade">Curso</label>
+                    <input class="form-control" type="text" id="cursoEscolaridade" placeholder="curso"
+                      value="{{escolaridade.curso}}">
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label for="instituicaoEscolaridade">Instituição</label>
+                    <input class="form-control" type="text" id="instituicaoEscolaridade" placeholder="instituição"
+                      value="{{escolaridade.instituicao}}">
+                  </div>
+                </div>
+
+              </fieldset>
+
+            </div>
+            <div class="form-group ">
+              <button style="float:left" id="editarDadosEscolares" class="btn btn-sm btn-outline-primary "><i
+                  class="fa fa-edit"></i> Editar dados Escolares</button>
+            </div> <br>
+            <div class="form-group ">
+              <label for="descricaoAtividades">Outras habilidades que você desempenha, as quais poderiam ser
+                desenvolvidas como voluntário(a) na casa</label>
+              <textarea class="form-control" name="descricaoAtividades" id="descricaoAtividades" cols="60" rows="5"
+                value={{escolaridade.descricao_atividades}}>
                 {{escolaridade.descricao_atividades}}
                 </textarea>
-                
-              </div>
-              
+
+            </div>
+
           </form>
-          
+
         </div>
-        
+
       </section>
-      
+
     </fieldset>
     <fieldset class="collapse" name="transferencia">
       <legend>Transferência</legend>
@@ -1126,58 +687,62 @@
             </select>
           </div>
           <fieldset id="dadosTransferencia" disabled="disabled">
-              <div class="form-row dados-transferencia">
-                  <div class="form-group col-md-4">
-                    <label for="nomeCentroEspirita">Nome do Centro Espírita</label>
-                    <input type="text" class="form-control" id="nomeCentroEspirita" placeholder="" value="{{transferencia.nome_centro_espirita}}">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="cidadeCentroEspirita">Cidade</label>
-                    <input type="text" class="form-control" id="cidadeCentroEspirita" value="{{transferencia.cidade_centro_espirita}}">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="ufCentroEspirita">UF</label>
-                    <select class="form-control" name="uf" id="ufCentroEspirita" >
-                      <option value={{transferencia.uf_centro_espirita}}>{{transferencia.uf_centro_espirita}}</option>
-                      <option value="AC">AC</option>
-                      <option value="AL">AL</option>
-                      <option value="AM">AM</option>
-                      <option value="AP">AP</option>
-                      <option value="BA">BA</option>
-                      <option value="CE">CE</option>
-                      <option value="DF">DF</option>
-                      <option value="ES">ES</option>
-                      <option value="GO">GO</option>
-                      <option value="MA">MA</option>
-                      <option value="MG">MG</option>
-                      <option value="MS">MS</option>
-                      <option value="MT">MT</option>
-                      <option value="PA">PA</option>
-                      <option value="PB">PB</option>
-                      <option value="PE">PE</option>
-                      <option value="PI">PI</option>
-                      <option value="PR">PR</option>
-                      <option value="RJ">RJ</option>
-                      <option value="RN">RN</option>
-                      <option value="RS">RS</option>
-                      <option value="RO">RO</option>
-                      <option value="RR">RR</option>
-                      <option value="SC">SC</option>
-                      <option value="SE">SE</option>
-                      <option value="SP">SP</option>
-                      <option value="TO">TO</option>
-                    </select>
-                  </div>
-                  <div class="form-group col-md-4">
-                      <label for="tempoCentroEspirita">Tempo que frequentou esse Centro Espírita</label>
-                      <input type="text" class="form-control" id="tempoCentroEspirita" value="{{transferencia.tempo_centro_espirita}}">
-                    </div>
-                </div>
-                
+            <div class="form-row dados-transferencia">
+              <div class="form-group col-md-4">
+                <label for="nomeCentroEspirita">Nome do Centro Espírita</label>
+                <input type="text" class="form-control" id="nomeCentroEspirita" placeholder=""
+                  value="{{transferencia.nome_centro_espirita}}">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="cidadeCentroEspirita">Cidade</label>
+                <input type="text" class="form-control" id="cidadeCentroEspirita"
+                  value="{{transferencia.cidade_centro_espirita}}">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="ufCentroEspirita">UF</label>
+                <select class="form-control" name="uf" id="ufCentroEspirita">
+                  <option value={{transferencia.uf_centro_espirita}}>{{transferencia.uf_centro_espirita}}</option>
+                  <option value="AC">AC</option>
+                  <option value="AL">AL</option>
+                  <option value="AM">AM</option>
+                  <option value="AP">AP</option>
+                  <option value="BA">BA</option>
+                  <option value="CE">CE</option>
+                  <option value="DF">DF</option>
+                  <option value="ES">ES</option>
+                  <option value="GO">GO</option>
+                  <option value="MA">MA</option>
+                  <option value="MG">MG</option>
+                  <option value="MS">MS</option>
+                  <option value="MT">MT</option>
+                  <option value="PA">PA</option>
+                  <option value="PB">PB</option>
+                  <option value="PE">PE</option>
+                  <option value="PI">PI</option>
+                  <option value="PR">PR</option>
+                  <option value="RJ">RJ</option>
+                  <option value="RN">RN</option>
+                  <option value="RS">RS</option>
+                  <option value="RO">RO</option>
+                  <option value="RR">RR</option>
+                  <option value="SC">SC</option>
+                  <option value="SE">SE</option>
+                  <option value="SP">SP</option>
+                  <option value="TO">TO</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="tempoCentroEspirita">Tempo que frequentou esse Centro Espírita</label>
+                <input type="text" class="form-control" id="tempoCentroEspirita"
+                  value="{{transferencia.tempo_centro_espirita}}">
+              </div>
+            </div>
+
           </fieldset>
           <div>
-              <button style="float:left" id="editarDadosCentroEspirita" class="btn btn-sm btn-outline-primary"><i class="fa fa-edit"></i> Editar dados do Centro Espírita</button>
-          </div> <br> <br> 
+            <button style="float:left" id="editarDadosCentroEspirita" class="btn btn-sm btn-outline-primary"><i
+                class="fa fa-edit"></i> Editar dados do Centro Espírita</button>
+          </div> <br> <br>
           <div>
             <h6 for="estudosDoutrina"> Estudos da Doutrina Espírita que você desenvolveu em grupo no (s) CENTRO(s)
               ESPÍRITA(s) ANTERIOR(es)</h6>
@@ -1225,7 +790,8 @@
                       <input type="text" class="tempo-atividade" id="tempoAtividadeVoluntaria" value="{{tempo}}">
                     </div>
                   </td>
-                  <td><button type="button" class="btn btn-sm btn-outline-info btn-delete-atividade" id="removeAtividadeVoluntaria"><i class="fa fa-trash"></i></button>
+                  <td><button type="button" class="btn btn-sm btn-outline-info btn-delete-atividade"
+                      id="removeAtividadeVoluntaria"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>
                 {{/each}}
@@ -1244,7 +810,8 @@
                     <input type="text" class="tempo-atividade" id="tempoAtividadeVoluntaria" value="{{tempo}}">
                   </div>
                 </td>
-                <td><button type="button" class="btn btn-sm btn-outline-danger btn-delete-atividade" id="removeAtividadeVoluntaria" disabled><i class="fa fa-trash"></i></button>
+                <td><button type="button" class="btn btn-sm btn-outline-danger btn-delete-atividade"
+                    id="removeAtividadeVoluntaria" disabled><i class="fa fa-trash"></i></button>
                 </td>
               </tr>
             </tbody>
@@ -1267,11 +834,13 @@
                 {{#each experiencia }}
                 <tr class="experiencia-pratica">
                   <th scope="row">
-                    <input class="checkbox-experienca-pratica" type="checkbox" name="colors" value="{{atividade}}" checked={{value}} />
+                    <input class="checkbox-experienca-pratica" type="checkbox" name="colors" value="{{atividade}}"
+                      checked={{value}} />
                   </th>
                   <td>{{atividade}}</td>
                   <td>
-                    <input class="input-time " type="text" name="mediumSensitivoTempo" id="mediumSensitivoTempo" placeholder="" value="{{tempo}}" disabled={{disable}}>
+                    <input class="input-time " type="text" name="mediumSensitivoTempo" id="mediumSensitivoTempo"
+                      placeholder="" value="{{tempo}}" disabled={{disable}}>
                   </td>
                 </tr>
                 {{/each}}
@@ -1321,215 +890,234 @@
 <template name="preenchimentoInterno">
   <div class="container">
     <fieldset name="preenchimentoInterno">
-        <legend style="text-align: center">Preenchimento interno do CEAHA</legend>
+      <legend style="text-align: center">Preenchimento interno do CEAHA</legend>
     </fieldset>
     <fieldset class=" interno" name="preenchimentoInterno">
       <div class="container transferencia">
         <form class="form-control">
           <h5 class="text" style="text-align: center">Colaborador: {{nome}}</h5>
           <table class="table table-hover tipo-socio">
-              <thead>
-                <tr>
-                  <th scope="col" width="50">Selecione</th>
-                  <th scope="col" width="100">Tipo de sócio</th>
-                  <th scope="col" width="100">Valor Mensal</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="tipo-socio-item">
-                  <th scope="row">
-                    <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioLivre" id="socioLivre" value="Socio Livre" data-target=""  >
-                  </th>
-                  <td>Sócio Livre</td>
-                  <td>
-                    <input class="input-valor-mensal " type="text" name="socioLivreMEnsalidade" id="socioLivreMEnsalidade" placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="tipo-socio-item">
-                  <th scope="row">
-                      <!-- <input type="checkbox" class="checkbox-tipo-socio-2" > -->
-                    <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioVoluntario" id="socioVoluntario" value="Socio Voluntario" data-target="socioVoluntario">
-                  </th>
-                  <td>Sócio Voluntário</td>
-                  <td>
-                    <input class="input-valor-mensal " type="text" name="socioVoluntarioMEnsalidade" id="socioVoluntarioMEnsalidade" placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="tipo-socio-item">
-                  <th scope="row">
-                      <!-- <input type="checkbox" class="checkbox-tipo-socio-2" > -->
-                    <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioEfetivo" id="socioEfetivo" value="Socio Efetivo" data-target="socioEfetivo">
-                  </th>
-                  <td>Sócio Efetivo</td>
-                  <td>
-                    <input class="input-valor-mensal " type="text" name="socioEfetivoMensalidade" id="socioEfetivoMensalidade" placeholder="" disabled>
-                  </td>
-                </tr>
-                <tr class="table-row atividade-interna-add">
-                  <td colspan="4">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary" id="btnAddSocio">Adicionar Sócio</button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                  <h3>Histórico do Sócio</h3>
-                  
-                    {{#each socio}}
-                    
-                      <tr class="hist-tipo-socio-item">
-                        <td>{{tipo}}</td>
-                        <td>
-                          <input class="hist-input-valor-mensal " type="text" name="hist-socioLivreMEnsalidade" id="hist-socioLivreMEnsalidade" value= "{{valor}}" placeholder="" disabled>
-                        </td>
-                        <td>{{date_create}}</td>
-                      </tr>
-                    {{/each}}
-              </tfoot>
+            <thead>
+              <tr>
+                <th scope="col" width="50">Selecione</th>
+                <th scope="col" width="100">Tipo de sócio</th>
+                <th scope="col" width="100">Valor Mensal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tipo-socio-item">
+                <th scope="row">
+                  <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioLivre" id="socioLivre"
+                    value="Socio Livre" data-target="">
+                </th>
+                <td>Sócio Livre</td>
+                <td>
+                  <input class="input-valor-mensal " type="text" name="socioLivreMEnsalidade" id="socioLivreMEnsalidade"
+                    placeholder="" disabled>
+                </td>
+              </tr>
+              <tr class="tipo-socio-item">
+                <th scope="row">
+                  <!-- <input type="checkbox" class="checkbox-tipo-socio-2" > -->
+                  <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioVoluntario"
+                    id="socioVoluntario" value="Socio Voluntario" data-target="socioVoluntario">
+                </th>
+                <td>Sócio Voluntário</td>
+                <td>
+                  <input class="input-valor-mensal " type="text" name="socioVoluntarioMEnsalidade"
+                    id="socioVoluntarioMEnsalidade" placeholder="" disabled>
+                </td>
+              </tr>
+              <tr class="tipo-socio-item">
+                <th scope="row">
+                  <!-- <input type="checkbox" class="checkbox-tipo-socio-2" > -->
+                  <input class="checkbox checkbox-tipo-socio" type="checkbox" name="socioEfetivo" id="socioEfetivo"
+                    value="Socio Efetivo" data-target="socioEfetivo">
+                </th>
+                <td>Sócio Efetivo</td>
+                <td>
+                  <input class="input-valor-mensal " type="text" name="socioEfetivoMensalidade"
+                    id="socioEfetivoMensalidade" placeholder="" disabled>
+                </td>
+              </tr>
+              <tr class="table-row atividade-interna-add">
+                <td colspan="4">
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary" id="btnAddSocio">Adicionar Sócio</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <h3>Histórico do Sócio</h3>
+
+              {{#each socio}}
+
+              <tr class="hist-tipo-socio-item">
+                <td>{{tipo}}</td>
+                <td>
+                  <input class="hist-input-valor-mensal " type="text" name="hist-socioLivreMEnsalidade"
+                    id="hist-socioLivreMEnsalidade" value="{{valor}}" placeholder="" disabled>
+                </td>
+                <td>{{date_create}}</td>
+              </tr>
+              {{/each}}
+            </tfoot>
           </table>
           <fieldset id="addAtividadeInterna">
             <section id="sectionAddAtividadeInterna">
               <form id="formAtividadeInterna" action="">
-                  <section>
-                    <h3>Atividades Internas Realizadas</h3>
-                      <table class="table table-bordered atividade-interna">
-                        <thead class="table-head">
-                          <th>Ano</th>
-                          <th>Atividade</th>
-                          <th colspan="2">Frequencia</th>
-                        </thead>
-                        <tbody id="atividadeTableBody">
-                          <tr class="table-row atividade-interna-item" id="atividadeItem">
-                            <td>
-                              <div class="col">
-                                <input type="text" class="atividade-interna-item-ano" id="atividadeInternaAno" value="" placeholder="ano">
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                <select class="form-control atividade-interna-item-atividade" name="atividadesInternas" id="selectAtividadeInterna">
-                                    <option value="select">Selecione um departamento para carregar as atividades</option>
-                                  {{#each listaDeptoAtividades}}
-                                      <option value="{{nome}}">{{nome}}</option>
-                                  {{/each}}
-                                </select>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                <input type="text" class="atividade-interna-item-total frequencia" id="atividadeInternaFreqTotal" value="" placeholder="total">
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                <input type="text" class="atividade-interna-item-real frequencia" id="atividadeInternaFreqReal" value="" placeholder="real">
-                              </div>
-                            </td>
-                          </tr>
-                          
-                          <tr class="table-row atividade-interna-departamento" id="atividadeItem" >
-                            <td colspan="4">
-                              <div class="col" >
-                                  <select class="form-control" name="uf" id="atividadeInternaDepartamento" value="">
-                                      <option value="select">Selecione um Departamento</option>
-                                      <option value="DIJE"> DIJE  – DEPARTAMENTO  DE  INF NCIA E JUVENTUDE ESPÍRITA</option>
-                                      <option value="DECDE"> DECDE  – DEPARTAMENTO  DE  ESTUDO CONTINUADO DA DOUTRINA ESPÍRITA</option>
-                                      <option value="DDOU"> DDOU – DEPARTAMENTO DOUTRINÁRIO</option>
-                                      <option value="DAFT"> DAFT – DEPARTAMENTO DO ATENDIMENTO FRATERNO</option>
-                                      <option value="DMED"> DMED  – DEPARTAMENTO  DE  MEDIUNIDADE</option>
-                                      <option value="DPAS"> DPAS - DEPARTAMENTO DO PASSE</option>
-                                      <option value="DAPS"> DAPS – DEPARTAMENTO DE ASSISTÊNCIA  E PROMOÇÃO SOCIAL</option>
-                                      <option value="DFAM">  DFAM - DEPARTAMENTO DE FAMÍLIA</option>
-                                      <option value="DEVT">  DEVT – DEPARTAMENTO DE EVENTOS</option>
-                                      <option value="DLIV">  DLIV  – DEPARTAMENTO  DO LIVRO</option>
-                                      <option value="DART">  DART - DEPARTAMENTO DE ARTES ESPÍRITAS</option>
-                                      <option value="DCOM">  DCOM – DEPARTAMENTO DE COMUNICAÇÃO E DIVULGAÇÃO ESPÍRITA</option>
-                                    </select>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr class="table-row atividade-interna-add">
-                            <td colspan="4">
-                              <div class="col">
-                                  <button type="submit" class="btn btn-primary" id="btnAddAtividadeInterna">Adicionar Atividade</button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </section>
+                <section>
+                  <h3>Atividades Internas Realizadas</h3>
+                  <table class="table table-bordered atividade-interna">
+                    <thead class="table-head">
+                      <th>Ano</th>
+                      <th>Atividade</th>
+                      <th colspan="2">Frequencia</th>
+                    </thead>
+                    <tbody id="atividadeTableBody">
+                      <tr class="table-row atividade-interna-item" id="atividadeItem">
+                        <td>
+                          <div class="col">
+                            <input type="text" class="atividade-interna-item-ano" id="atividadeInternaAno" value=""
+                              placeholder="ano">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <select class="form-control atividade-interna-item-atividade" name="atividadesInternas"
+                              id="selectAtividadeInterna">
+                              <option value="select">Selecione um departamento para carregar as atividades</option>
+                              {{#each listaDeptoAtividades}}
+                              <option value="{{nome}}">{{nome}}</option>
+                              {{/each}}
+                            </select>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <input type="text" class="atividade-interna-item-total frequencia"
+                              id="atividadeInternaFreqTotal" value="" placeholder="total">
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <input type="text" class="atividade-interna-item-real frequencia"
+                              id="atividadeInternaFreqReal" value="" placeholder="real">
+                          </div>
+                        </td>
+                      </tr>
+
+                      <tr class="table-row atividade-interna-departamento" id="atividadeItem">
+                        <td colspan="4">
+                          <div class="col">
+                            <select class="form-control" name="uf" id="atividadeInternaDepartamento" value="">
+                              <option value="select">Selecione um Departamento</option>
+                              <option value="DIJE"> DIJE – DEPARTAMENTO DE INF NCIA E JUVENTUDE ESPÍRITA</option>
+                              <option value="DECDE"> DECDE – DEPARTAMENTO DE ESTUDO CONTINUADO DA DOUTRINA ESPÍRITA
+                              </option>
+                              <option value="DDOU"> DDOU – DEPARTAMENTO DOUTRINÁRIO</option>
+                              <option value="DAFT"> DAFT – DEPARTAMENTO DO ATENDIMENTO FRATERNO</option>
+                              <option value="DMED"> DMED – DEPARTAMENTO DE MEDIUNIDADE</option>
+                              <option value="DPAS"> DPAS - DEPARTAMENTO DO PASSE</option>
+                              <option value="DAPS"> DAPS – DEPARTAMENTO DE ASSISTÊNCIA E PROMOÇÃO SOCIAL</option>
+                              <option value="DFAM"> DFAM - DEPARTAMENTO DE FAMÍLIA</option>
+                              <option value="DEVT"> DEVT – DEPARTAMENTO DE EVENTOS</option>
+                              <option value="DLIV"> DLIV – DEPARTAMENTO DO LIVRO</option>
+                              <option value="DART"> DART - DEPARTAMENTO DE ARTES ESPÍRITAS</option>
+                              <option value="DCOM"> DCOM – DEPARTAMENTO DE COMUNICAÇÃO E DIVULGAÇÃO ESPÍRITA</option>
+                            </select>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="table-row atividade-interna-add">
+                        <td colspan="4">
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary" id="btnAddAtividadeInterna">Adicionar
+                              Atividade</button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
               </form>
-                
+
             </section>
           </fieldset>
         </form>
       </div>
     </fieldset>
     <fieldset name="atividadesInternasList">
-    <div class="container transferencia">
-      <form class="form-control">
-        <fieldset id="addAtividadeInterna">
-          <section id="sectionAddAtividadeInterna">
-            <form id="formAtividadeInterna" action="">
+      <div class="container transferencia">
+        <form class="form-control">
+          <fieldset id="addAtividadeInterna">
+            <section id="sectionAddAtividadeInterna">
+              <form id="formAtividadeInterna" action="">
                 <section>
                   <h3>Atividades Internas Realizadas</h3>
-                 
-                    <table class="table table-bordered atividade-interna-list">
-                        <thead class="table-head">
-                          <th>Ano</th>
-                          <th>Atividade</th>
-                          <th colspan="2">Frequencia</th>
-                        </thead>
-                        
-                        <tbody id="atividadeTableBody">
-                          
-                          {{#each atividades_internas}}
-                           
-                          <tr class="table-row atividade-interna-list-departamento" id="atividadeItem" style="text-align: center !important">
-                            <td colspan="4">
-                              <div class="col" >
-                                  <div  class="col-xs-6 text-right oppt-label atividade-item" id="deptoAtividadeLista">{{departamento}}</div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr class="table-row atividade-interna-list-item" id="atividadeItem">
-                            <td>
-                              <div class="col">
-                                  <div class="col-xs-6 text-right oppt-label atividade-item" id="anoAtividadeLista">{{ano}}</div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                  <div class="col-xs-6 text-right oppt-label atividade-item" id="AtividadeLista">{{atividade}}</div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                  <div class="col-xs-6 text-right oppt-label atividade-item" id="freqTotalAtividadeLista">{{freq_total}}</div>
-                              </div>
-                            </td>
-                            <td>
-                              <div class="col">
-                                  <div class="col-xs-6 text-right oppt-label atividade-item" id="freqRealAtividadeLista">{{freq_real}}</div>
-                              </div>
-                            </td>
-                          </tr>
-                           
-                          {{/each}}
-                          
-                        </tbody>
-                        
-                      </table>
-                  </section>
-            </form>
-              
-          </section>
-        </fieldset>
-        
-          
-      </form>
-    </div>
+
+                  <table class="table table-bordered atividade-interna-list">
+                    <thead class="table-head">
+                      <th>Ano</th>
+                      <th>Atividade</th>
+                      <th colspan="2">Frequencia</th>
+                    </thead>
+
+                    <tbody id="atividadeTableBody">
+
+                      {{#each atividades_internas}}
+
+                      <tr class="table-row atividade-interna-list-departamento" id="atividadeItem"
+                        style="text-align: center !important">
+                        <td colspan="4">
+                          <div class="col">
+                            <div class="col-xs-6 text-right oppt-label atividade-item" id="deptoAtividadeLista">
+                              {{departamento}}</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="table-row atividade-interna-list-item" id="atividadeItem">
+                        <td>
+                          <div class="col">
+                            <div class="col-xs-6 text-right oppt-label atividade-item" id="anoAtividadeLista">{{ano}}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <div class="col-xs-6 text-right oppt-label atividade-item" id="AtividadeLista">{{atividade}}
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <div class="col-xs-6 text-right oppt-label atividade-item" id="freqTotalAtividadeLista">
+                              {{freq_total}}</div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="col">
+                            <div class="col-xs-6 text-right oppt-label atividade-item" id="freqRealAtividadeLista">
+                              {{freq_real}}</div>
+                          </div>
+                        </td>
+                      </tr>
+
+                      {{/each}}
+
+                    </tbody>
+
+                  </table>
+                </section>
+              </form>
+
+            </section>
+          </fieldset>
+
+
+        </form>
+      </div>
     </fieldset>
   </div>
-</template>
+</template> 

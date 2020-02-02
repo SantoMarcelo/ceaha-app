@@ -5,17 +5,18 @@ import { Mongo } from 'meteor/mongo';
 
 Meteor.startup(() => {
   
-  const Participantes = new Mongo.Collection('participantes');
-  const Atividades = new Mongo.Collection('atividades');
+  const Insumos = new Mongo.Collection('insumos');
+  const Produtos = new Mongo.Collection('produtos');
   const Socio = new Mongo.Collection('socio')
+  const Categoria = new Mongo.Collection('categoria')
   
 
   Meteor.methods({
-    'inserirParticipante'(participante) {
-      Participantes.insert(participante);
+    'inserirParticipante'(insumo) {
+      Insumos.insert(insumo);
     },
-    'buscaParticipante'(nome){
-      Participantes.findOne({nome: nome})
+    'InserirProduto'(produto){
+      Produtos.insert(produto)
     },
     'updateParticipante'(id, participante){
       Participantes.update({_id:id},{$set:participante});

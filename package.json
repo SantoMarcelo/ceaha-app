@@ -8,9 +8,9 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@babel/runtime": "^7.5.5",
-    "bcrypt": "^3.0.6",
-    "inputmask": "^4.0.3",
+    "@babel/runtime": "^7.7.6",
+    "bcrypt": "^3.0.7",
+    "inputmask": "^4.0.9",
     "meteor-node-stubs": "^0.4.1"
   },
   "meteor": {
@@ -22,8 +22,6 @@
   },
   "engines": {
     "node": "10.x",
-    "npm":  "6.9.0"
+    "npm": "6.9.0"
   }
 }
-
-

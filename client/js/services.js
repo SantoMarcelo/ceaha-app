@@ -116,9 +116,9 @@ export function getMediumData() {
   
 }
 
-export function adicionaAtividade(){
-  var row = document.getElementById("atividadeItem");
-  var table = document.getElementById("atividadeTable");
+export function adicionaInsumo(){
+  var row = document.getElementById("insumoItem");
+  var table = document.getElementById("insumosTable");
   var tbody = table.firstChild.parentElement.lastElementChild
   var clone = row.cloneNode(true);
   clone.id = Math.random().toString(32).substring(2, 10);
@@ -128,11 +128,11 @@ export function adicionaAtividade(){
   console.log(clone.firstElementChild.id);
 
   $('#'+clone.id).each(function(){
-      $(this).find('td .descricao-atividade').val("");
-      $(this).find('td .tempo-atividade').val("");
+      $(this).find('td .descricao-insumo').val("");
+      $(this).find('td .quantidade-insumo').val("");
   })
   
-  $('#atividadeTable button:disabled').each(function(i){
+  $('#insumosTable button:disabled').each(function(i){
       if(i!= 0){
           $(this).prop("disabled", false);
       }
