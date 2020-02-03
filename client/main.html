@@ -78,6 +78,22 @@
   </div>
 </template>
 
+<template name="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <a href="/novo-produto">Cadastro de Produtos</a>
+      </div>
+      <div class="col-lg-4">
+        <a href="/novo-insumo">Cadastro de Insumos</a>
+      </div>
+      <div class="col-lg-4">
+        <a href="/receita">Gerar Receita</a>
+      </div>
+    </div>
+  </div>
+</template>
+
 <template name="novoProduto">
   <div class="container">
     <fieldset name="dados-produto">
@@ -87,8 +103,8 @@
           <form class="form-control validations-require">
             <div class="form-row">
               <div class="form-group col-md-6 ">
-                <label for="full-name">Nome</label>
-                * <input type="text" class="form-control" id="full-name" placeholder="nome produto" autocomplete="on"
+                <label for="nome-produto">Nome</label>
+                * <input type="text" class="form-control" id="nome-produto" placeholder="nome produto" autocomplete="on"
                   required>
                 <span class="error">This field is required</span>
               </div>
@@ -123,15 +139,12 @@
               <tbody id="insumoTableBody">
                 <tr class="table-row insumo-item" id="insumoItem">
                   <td>
-                    <div class="col-sm-6">
-                      <input type="text" class="descricao-insumo" id="descricaoInsumo" placeholder="descricao">
-                      <select type="select" class="descricao-insumo" id="descricaoInsumo" placeholder="descricao">
-                        
-                        <option value="select">Selecione um insumo</option>
+                    <div class="col-xs-8">
+                      <select type="select" class="form-control descricao-insumo" id="descricaoInsumo" placeholder="descricao">
+                        <option value="select">Selecione Insumo</option>
                         {{#each listaInsumos}}
-                        <option value="Óleo Essencial">{{nome}}</option>
+                        <option value="{{nome}}">{{nome}}</option>
                         {{/each}}
-                        
                       </select>
                       </div>
                   </td>

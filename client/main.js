@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { getFormData, getMediumData, adicionaInsumo, getAtividadesInternas, setAtividadeInterna, removeAtividade, getDataTable } from './js/services.js'
+import { getFormData, getInsumos, adicionaInsumo, getAtividadesInternas, setAtividadeInterna, removeAtividade, getDataTable } from './js/services.js'
 
 import './main.html';
 //import './services.js';
@@ -23,11 +23,14 @@ Meteor.startup(function () {
 })
 
 Router.route('/', function () {
+    this.render('home');
+});
+Router.route('/novo-produto', function () {
     this.render('novoProduto');
 });
-// Router.route('/', function () {
-//     this.render('novoInsumo');
-// });
+Router.route('/novo-insumo', function () {
+    this.render('novoInsumo');
+});
 Router.route('/novoProduto', function () {
     this.render('novoProduto');
 });
@@ -145,17 +148,19 @@ Template.acesso.events({
 
 })
 
-Template.novoProduto.helpers({
-   
-}) 
 
+
+Template.novoProduto.helpers({
+    'listaInsumos': function () {
+        return Template.instance().insumos.get();
+    }
+})
+Template.novoProduto.onCreated(function () {
+    this.insumos = new ReactiveVar(Insumo.find());
+})
 
 Template.novoProduto.onRendered(function () {
-   this.insumoss = new ReactiveVar(Insumo.find());
-
    
-   console.log("AQUIIIIII", Insumo.find())
-   console.log("AQUI2", this.insumoss.curValue.collection._docs._map) 
 })
 
 Template.novoProduto.events({
@@ -190,7 +195,9 @@ Template.novoProduto.events({
     'click #cadastrar'(event, instance) {
         event.preventDefault();
         var produto = {
-            nome: $('#full-name')
+            nome: $('#nome-produto').val(),
+            insumos: getInsumos()
+
         }
         Meteor.call('InserirProduto', produto, function (err, res) {
             if (err) {
@@ -207,7 +214,6 @@ Template.novoProduto.events({
 
 Template.novoInsumo.helpers({
     'listaCategorias': function () {
-        console.log("AQUII", this.atividades.curValue.collection._docs._map)
         return Template.instance().categoria.get();
     }
 })
@@ -260,7 +266,7 @@ Template.novoInsumo.events({
 })
 
 Template.novoInsumo.onCreated(function () {
-    //this.categoria = new ReactiveVar(Categoria.find());
+    this.categoria = new ReactiveVar(Categoria.find());
 })
 
 
