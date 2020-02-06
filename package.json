@@ -1,5 +1,5 @@
 {
-  "name": "ceaha_app",
+  "name": "Gerenciado-de-produtos",
   "private": true,
   "scripts": {
     "start": "meteor run",

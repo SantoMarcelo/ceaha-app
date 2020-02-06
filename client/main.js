@@ -10,7 +10,7 @@ import './main.html';
 
 const Categoria = new Mongo.Collection('categorias');
 const Insumo = new Mongo.Collection('insumos');
-const Socio = new Mongo.Collection('socio');
+const Produto = new Mongo.Collection('produtos');
 
 Meteor.startup(function () {
 
@@ -23,7 +23,7 @@ Meteor.startup(function () {
 })
 
 Router.route('/', function () {
-    this.render('home');
+    this.render('acesso');
 });
 Router.route('/novo-produto', function () {
     this.render('novoProduto');
@@ -31,22 +31,28 @@ Router.route('/novo-produto', function () {
 Router.route('/novo-insumo', function () {
     this.render('novoInsumo');
 });
-Router.route('/novoProduto', function () {
+Router.route('/novo-produtos', function () {
     this.render('novoProduto');
+});
+Router.route('/busca-produto', function () {
+    this.render('buscaProdutos');
+});
+Router.route('/busca-insumo', function () {
+    this.render('buscaInsumos');
 });
 Router.route('/login', function () {
     this.render('acesso');
 });
 Router.route('/home', function () {
-    this.render('listaParticipante');
+    this.render('home');
 });
-Router.route('/editarParticipante/:_id', {
+Router.route('/edita-insumo/:_id', {
     name: 'edit',
-    template: 'editarParticipante',
+    template: 'editaInsumo',
     data: function () {
 
         //var participante = Participantes.findOne({ _id: this.params._id });
-        return Participantes.findOne({ _id: this.params._id });
+        return Insumo.findOne({ _id: this.params._id });
     },
 
 });
@@ -205,7 +211,7 @@ Template.novoProduto.events({
                 return false;
             } else {
                 sAlert.success('Participante cadastrado com sucesso.')
-                window.location.href = ('/')
+                window.location.href = ('/busca-produto')
             }
         })
 
@@ -242,13 +248,14 @@ Template.novoInsumo.events({
         var quantidade = $('#insumo-quantidade').val()
         var valor_total = $('#insumo-valor-total').val()
         var valor_grama = $('#insumo-valor-grama').val()
-        var categoria = $('#insumo-categoria')
+        var categoria = $('#selectCategoriaInsumo option:selected').val()
 
         var insumo = {
             nome: name,
             quantidade: quantidade,
             valor_total: valor_total,
-            valor_grama: valor_grama
+            valor_grama: valor_grama,
+            categoria: categoria
         }
 
         Meteor.call('inserirParticipante', insumo, function (err, res) {
@@ -256,8 +263,8 @@ Template.novoInsumo.events({
                 sAlert.error(err.reason)
                 return false;
             } else {
-                sAlert.success('Participante cadastrado com sucesso.')
-                window.location.href = ('/')
+                sAlert.success('Insumo cadastrado com sucesso.')
+                window.location.href = ('/busca-insumo')
             }
         })
 
@@ -269,17 +276,121 @@ Template.novoInsumo.onCreated(function () {
     this.categoria = new ReactiveVar(Categoria.find());
 })
 
+Template.buscaProdutos.onCreated(function () {
+    this.produtos = new ReactiveVar(Produto.find());
+})
 
-Template.listaParticipante.rendered = function () {
+Template.buscaProdutos.rendered = function () {
     this.$("#busca").on("submit", function (e) { e.preventDefault() });
 }
 
-Template.listaParticipante.helpers({
-    'listaParticipantes': function () {
-        return Template.instance().participante.get();
+Template.buscaProdutos.helpers({
+    'listaProdutos': function () {
+        return Template.instance().produtos.get();
     },
 
 })
+
+Template.buscaProdutos.events({
+    'click #botaoBuscar'(event, instance) {
+        event.preventDefault();
+        var nome = $('#buscaNome').val();
+        var resultado = Produto.find({ "nome": { $regex: `${nome}` } });
+        console.log("RESULTADO", resultado)
+        instance.produtos.set(resultado);
+    },
+
+    'click #limparPesquisa'(event, instance) {
+        event.preventDefault();
+        var resultado = Participantes.find();
+        instance.participante.set(resultado);
+        $('#buscaNome').val();
+    },
+
+    'click #deletarProduto'(event, instance) {
+        var dialog = $('#window');
+        $('#deletarProduto').click(function () {
+            dialog.show();
+        });
+        var r = confirm("Você tem certeza que deseja apagar este produto?");
+        if (r == true) {
+            Meteor.call('deletePoduto', this._id, function (err, res) {
+                if (err) {
+                    sAlert.error(err.reason)
+                    return false;
+                } else {
+                    sAlert.success('Produto removido com sucesso com sucesso.')
+                }
+            })
+        }
+    }
+})
+
+Template.buscaInsumos.onCreated(function () {
+    this.insumos = new ReactiveVar(Insumo.find());
+})
+
+Template.buscaInsumos.rendered = function () {
+    this.$("#botaoBuscar").on("submit", function (e) { e.preventDefault() });
+}
+
+Template.buscaInsumos.helpers({
+    'listaInsumos': function () {
+        return Template.instance().insumos.get();
+    },
+
+})
+
+Template.buscaInsumos.events({
+    'click #botaoBuscar'(event, instance) {
+        event.preventDefault();
+        console.log("INSTANCE", instance)
+        var nome = $('#buscaNome').val();
+        var resultado = Insumo.find({ "nome":  {$regex:`${nome}`}});
+        console.log("RESULTADO", resultado)
+        instance.insumos.set(resultado);
+    },
+
+    'click #limparPesquisa'(event, instance) {
+        event.preventDefault();
+        var resultado = Insumo.find();
+        instance.insumos.set(resultado);
+        $('#buscaNome').val();
+    },
+
+    'click #editarInsumo'(event, instance) {
+        event.preventDefault();
+        //console.log(this._id);
+        window.location.href = ('/edita-insumo/' + this._id);
+
+    },
+
+    'click #deletarInsumo'(event, instance) {
+        var dialog = $('#window');
+        $('#deletarInsumo').click(function () {
+            dialog.show();
+        });
+        var r = confirm("Você tem certeza que deseja apagar este insumo?");
+        if (r == true) {
+            Meteor.call('deleteInsumo', this._id, function (err, res) {
+                if (err) {
+                    sAlert.error(err.reason)
+                    return false;
+                } else {
+                    sAlert.success('insumo removido com sucesso com sucesso.')
+                }
+            })
+        }
+    }
+
+})
+
+
+
+
+
+
+
 
 Template.listaParticipante.events({
 

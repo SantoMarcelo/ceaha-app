@@ -20,7 +20,6 @@
 
         <span class="navbar-text mr-2">Olá, {{fullName}}</span>
         <button id="home" class="btn btn-sm btn-outline-warning">Home</button>
-        <button id="novProduto" class="btn btn-sm btn-outline-info">Novo Participante</button>
         <button id="botaoSair" class="btn btn-sm btn-outline-info">Sair</button>
       </div>
       {{else}}
@@ -82,10 +81,16 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
-        <a href="/novo-produto">Cadastro de Produtos</a>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="/novo-produto">Cadastro de Produtos</a></li>
+          <li class="list-group-item"><a href="/busca-produto">Pesquisa Produtos</a></li>
+        </ul>
       </div>
       <div class="col-lg-4">
-        <a href="/novo-insumo">Cadastro de Insumos</a>
+        <ul class="list-group">
+          <li class="list-group-item"><a href="/novo-produto"> <a href="/novo-insumo">Cadastro de Insumos</a></a></li>
+          <li class="list-group-item"><a href="/busca-insumo">Busca Insumos</a></li>
+        </ul>
       </div>
       <div class="col-lg-4">
         <a href="/receita">Gerar Receita</a>
@@ -237,6 +242,162 @@
 
 </template>
 
+<template name="editaInsumo">
+  <div class="container">
+    <fieldset name="dados-insumo">
+      <legend><i class="fa fa-address-card"></i> Dados Insumo</legend>
+      <section>
+        <div class="container dados-insumo">
+          <form class="form-control validations-require">
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="insumo-nome">Insumo</label>
+                <input type="text" class="form-control" id="insumo-nome" value="{{nome}}" placeholder="nome do insumo" autocomplete="on">
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="selectCategoriaInsumo">Categoria</label>
+                  <select class="form-control categoria-insumo" name="categoriaInsumo"
+                    id="selectCategoriaInsumo">
+                    <option value="{{categoria}}">{{categoria}}</option>
+                    <option value="Óleo Essencial">Óleo Essencial</option>
+                    <option value="Óleos Vegetais">Óleos Vegetais</option>
+                    <option value="Ativo Seco">Ativo Seco</option>
+                    <option value="Ativo Liquido">Ativo Liquido</option>
+                    <option value="Conservantes">Conservantes</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="insumo-quantidade">Quantidade</label>
+                <input type="text" class="form-control" id="insumo-quantidade" value="{{quantidade}}" placeholder="quantidade de insumo"
+                  autocomplete="on">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="insumo-valor-total">Valor Total</label>
+                <input type="text" class="form-control" id="insumo-valor-total" value="{{valor_total}}" placeholder="valor total" autocomplete="on">
+              </div>
+              <div class="form-group col-md-6 ">
+                <label for="insumo-valor-grama">Valor por Grama R$</label>
+                <input type="text" class="form-control" id="insumo-valor-grama" value={{valor_grama}} placeholder="valor por grama"
+                  autocomplete="on" disabled>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section>
+                    <div class="container button">
+                      <form class="form-control validations-require">
+                        <div class="form-group">
+                          <label for="submit"></label>
+                          <button type="submit" class="btn btn-primary" id="cadastrar">Cadastrar</button>
+                        </div>
+                      </form>
+                    </div>
+      </section>
+    </fieldset>
+  </div>
+
+</template>
+
+<template name="buscaProdutos">
+  <div class="container">
+    <section id="meusProdutos">
+      <div class="container busca-Produto">
+        <form id="busca" class="form-inline mb-3" style="padding-top: 10px">
+          <h6>Buscar Produto:</h6>
+          <div class="form-group ml-3 mx-sm-3">
+            <input type="text" id="buscaProduto" name="buscaProduto" class="form-control" placeholder="nome">
+          </div>
+          <button type="button" id="botaoBuscar" class="btn btn-success"><i class="fa fa-search"></i></button>
+          <div class="form-group ml-3 mx-sm-3">
+            <button type="button" id="limparPesquisa" class="btn btn-secondary">Limpar Pesquisa</button>
+          </div>
+        </form>
+      </div>
+      {{#if listaProdutos.count}}
+      <table class="table">
+        <thead>
+          <th>Nome</th>
+          <th>Editar</th>
+          <th>Apagar</th>
+        </thead>
+        <tbody>
+          {{#each listaProdutos}}
+          <tr>
+            <td>{{nome}}</td>
+            <td class="td-acoes"><button id="editarProduto" class="btn btn-sm btn-outline-primary"><i
+                  class="fa fa-edit"></i></button></td>
+            <td class="td-acoes"><button id="deletarProduto" class="btn btn-sm btn-outline-danger"><i
+                  class="fa fa-trash"></i></button></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{else}}
+      <div class="alert alert-warning" role="alert">
+        <i class="fa fa-exclamation-triangle"></i>
+        <p>Nenhum Produto encontrato.</p>
+      </div>
+      {{/if}}
+
+    </section>
+  </div>
+
+</template>
+
+<template name="buscaInsumos">
+  <div class="container">
+    <section id="meusInsumos">
+      <div class="container busca-Insumo">
+        <form id="busca" class="form-inline mb-3" style="padding-top: 10px">
+          <h6>Buscar Insumo:</h6>
+          <div class="form-group ml-3 mx-sm-3">
+            <input type="text" id="buscaInsumo" name="buscaInsumo" class="form-control" placeholder="nome">
+          </div>
+          <button type="button" id="botaoBuscar" class="btn btn-success"><i class="fa fa-search"></i></button>
+          <div class="form-group ml-3 mx-sm-3">
+            <button type="button" id="limparPesquisa" class="btn btn-secondary">Limpar Pesquisa</button>
+          </div>
+        </form>
+      </div>
+      {{#if listaInsumos.count}}
+      <table class="table">
+        <thead>
+          <th>Nome</th>
+          <th>Editar</th>
+          <th>Apagar</th>
+        </thead>
+        <tbody>
+          {{#each listaInsumos}}
+          <tr>
+            <td>{{nome}}</td>
+            <td class="td-acoes"><button id="editarInsumo" class="btn btn-sm btn-outline-primary"><i
+                  class="fa fa-edit"></i></button></td>
+            <td class="td-acoes"><button id="deletarInsumo" class="btn btn-sm btn-outline-danger"><i
+                  class="fa fa-trash"></i></button></td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{else}}
+      <div class="alert alert-warning" role="alert">
+        <i class="fa fa-exclamation-triangle"></i>
+        <p>Nenhum Insumo encontrato.</p>
+      </div>
+      {{/if}}
+
+    </section>
+  </div>
+
+</template>
+
+
+
+
+
 <template name="buscaParticipante">
   <div class="container busca-participante">
     <form id="busca" class="form-inline mb-3" style="padding-top: 10px">
@@ -252,7 +413,7 @@
 
 <template name="listaParticipante">
   <div class="container">
-    <section id="meusContatos">
+    <section id="meusProdutos">
       <div class="container busca-participante">
         <form id="busca" class="form-inline mb-3" style="padding-top: 10px">
           <h6>Buscar Participante:</h6>

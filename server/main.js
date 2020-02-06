@@ -33,8 +33,13 @@ Meteor.startup(() => {
         { $addToSet: { socio: socio } }
       );
     },
-    'deleteParticipante'(id){
-      Participantes.remove(
+    'deleteInsumo'(id){
+      Insumos.remove(
+        {_id:id}
+      );
+    },
+    'deletePoduto'(id){
+      Produtos.remove(
         {_id:id}
       );
     },
