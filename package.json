@@ -1,5 +1,5 @@
 {
-  "name": "ceaha_app",
+  "name": "Gerenciado-de-produtos",
   "private": true,
   "scripts": {
     "start": "meteor run",
@@ -11,6 +11,7 @@
     "@babel/runtime": "^7.8.4",
     "bcrypt": "^3.0.6",
     "inputmask": "^4.0.3",
+
     "meteor-node-stubs": "^0.4.1"
   },
   "meteor": {

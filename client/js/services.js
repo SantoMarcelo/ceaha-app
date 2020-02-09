@@ -1,9 +1,9 @@
 
 export function getFormData() {
-  
+
   var atividades = getDataTable();
   var atividadeMedium = getMediumData();
-  var atividades_internas 
+  var atividades_internas
   var participante = {
     nome: $('#full-name').val(),
     nascimento: $('#date-birth').val(),
@@ -60,7 +60,7 @@ export function getFormData() {
       tomos_eade: $('#tomosEade').val(),
       obras_basicas: $('#obrasBasicas').val(),
       outras_obras: $('#outrasObras').val(),
-    }, 
+    },
     atividades_voluntarias: atividades,
     experiencia: atividadeMedium,
     atividades_internas: atividades_internas
@@ -68,17 +68,17 @@ export function getFormData() {
   return participante
 };
 
-export function getAtividadesInternasData(){
+export function getAtividadesInternasData() {
   var atividades_internas = []
-        atividades_internas.push(
-        {
-            ano: $('#atividadeInternaAno').val(),
-            atividade: $('#atividadeInterna').val(),
-            freq_total: $('#atividadeInternaFreqTotal').val(),
-            freq_real: $('#atividadeInternaFreqReal').val(),
-            departamento: $('#atividadeInternaDepartamento option:selected').text(),
-        })
-        return atividades_internas
+  atividades_internas.push(
+    {
+      ano: $('#atividadeInternaAno').val(),
+      atividade: $('#atividadeInterna').val(),
+      freq_total: $('#atividadeInternaFreqTotal').val(),
+      freq_real: $('#atividadeInternaFreqReal').val(),
+      departamento: $('#atividadeInternaDepartamento option:selected').text(),
+    })
+  return atividades_internas
 }
 
 export function getDataTable() {
@@ -93,12 +93,12 @@ export function getDataTable() {
   return atividades;
 }
 
-export function getTempoValue() {
-  var tempoAtividadeObj = []
-  $("input.input-time").each(function (ind) {
-    tempoAtividadeObj.push({ tempo: this.value });
+export function getInsumos() {
+  var insumos = []
+  $(".insumo-item").each(function (ind) {
+    insumos.push({ nome: $(this).find('.descricao-insumo').val(), porcentagem: $(this).find('#quantidadeInsumo').val() });
   });
-  return tempoAtividadeObj;
+  return insumos;
 }
 
 export function getMediumData() {
@@ -107,40 +107,40 @@ export function getMediumData() {
   $(".experiencia-pratica").each(function (i) {
     if ($(this).find('input.checkbox-experienca-pratica:checked').prop("checked") == true) {
       mediumData.push({ value: true, atividade: $(this).find('input.checkbox-experienca-pratica').val(), tempo: $(this).find('.input-time').val(), disable: false });
-    }else{
+    } else {
       mediumData.push({ value: false, atividade: $(this).find('input.checkbox-experienca-pratica').val(), tempo: $(this).find('.input-time').val(), disable: true });
     }
-   
+
   });
   return mediumData
-  
+
 }
 
-export function adicionaAtividade(){
-  var row = document.getElementById("atividadeItem");
-  var table = document.getElementById("atividadeTable");
+export function adicionaInsumo() {
+  var row = document.getElementById("insumoItem");
+  var table = document.getElementById("insumosTable");
   var tbody = table.firstChild.parentElement.lastElementChild
   var clone = row.cloneNode(true);
   clone.id = Math.random().toString(32).substring(2, 10);
   tbody.appendChild(clone);
   var element = clone.firstElementChild;
-  console.log('#'+clone.id);
+  console.log('#' + clone.id);
   console.log(clone.firstElementChild.id);
 
-  $('#'+clone.id).each(function(){
-      $(this).find('td .descricao-atividade').val("");
-      $(this).find('td .tempo-atividade').val("");
+  $('#' + clone.id).each(function () {
+    $(this).find('td .descricao-insumo').val("");
+    $(this).find('td .quantidade-insumo').val("");
   })
-  
-  $('#atividadeTable button:disabled').each(function(i){
-      if(i!= 0){
-          $(this).prop("disabled", false);
-      }
+
+  $('#insumosTable button:disabled').each(function (i) {
+    if (i != 0) {
+      $(this).prop("disabled", false);
+    }
   })
-        
+
 }
 
-export function removeAtividade(){
+export function removeAtividade() {
   var table = document.getElementById("atividadeTable");
   var current = event.currentTarget;
 
